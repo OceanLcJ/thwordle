@@ -23,7 +23,7 @@
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
-  const gtagId = "G-F2Q37REQE6"
+  const gtagId = "G-N3FL38P2NM"
   let words = []
 
   $: rows = layouts[$settings.layout].rows

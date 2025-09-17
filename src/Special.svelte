@@ -28,7 +28,7 @@
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
-  const gtagId = "G-F2Q37REQE6"
+  const gtagId = "G-N3FL38P2NM"
 
   if (!specialWords[specialId]) {
     alert("รหัสลับผิด กรุณาลองใหม่อีกครั้ง")
