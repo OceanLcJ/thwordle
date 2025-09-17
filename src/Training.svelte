@@ -3,9 +3,6 @@
 
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
-  import Kofi from "./lib/Kofi.svelte"
-  import Menu from "./lib/Menu.svelte"
-  import Social from "./lib/Social.svelte"
   import { CharState, generateAlphabetStateMap, splitWord, validateWord } from "./lib/Wordle"
   import { onMount, tick } from "svelte"
   import Modal from "./lib/Modal.svelte"
@@ -13,15 +10,10 @@
   import AlertModal from "./lib/AlertModal.svelte"
   import { layouts } from "./lib/layouts"
 
-  const url = "https://thwordle.vercel.app"
-  const title = "Thwordle : Thai Wordle เวอเดิ้ลภาษาไทย"
+  const title = "Thwordle Training - ฝึกเล่น Thwordle ไร้ขีดจำกัด"
+  const url = "https://thwordle.app"
 
-  const menuItems = [
-    { name: "Twitter", url: "https://twitter.com/thwordle" },
-    { name: "Github", url: "https://github.com/narze/thwordle" },
-  ]
-
-  const description = "Thwordle : เวอเดิ้ลภาษาไทย"
+  const description = "ฝึกฝน Thwordle ได้ไม่จำกัดครั้งด้วยโหมด Training - เตรียมพร้อมสำหรับการเล่น Thwordle รายวัน พัฒนาทักษะการทายคำภาษาไทยอย่างต่อเนื่อง"
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
@@ -89,11 +81,11 @@
   // $: validate = validateWord(input, solution)
 
   const colors = {
-    [CharState.Correct]: "bg-green-500 border-green-500 text-white",
+    [CharState.Correct]: "bg-sakura-pink border-sakura-pink dark:bg-sakura-dark dark:border-sakura-dark text-white",
     [CharState.OutOfPlace]:
-      "bg-yellow-500 border-yellow-500 dark:bg-amber-500 dark:border-amber-500 text-white",
-    [CharState.Wrong]: "bg-gray-500 border-gray-500 text-white dark:bg-gray-700 dark:text-white",
-    [CharState.NotUsed]: "bg-white text-black dark:bg-gray-500 dark:text-white",
+      "bg-warm-orange border-warm-orange dark:bg-warm-dark dark:border-warm-dark text-white",
+    [CharState.Wrong]: "bg-elegant-grey border-elegant-grey dark:bg-elegant-dark dark:border-elegant-dark text-white",
+    [CharState.NotUsed]: "bg-pure-white text-black dark:bg-pure-charcoal dark:text-white border-gray-200 dark:border-gray-600",
   }
 
   onMount(async () => {
@@ -243,14 +235,9 @@
   })
 </script>
 
-<div class="footer-wrapper">
-  <Kofi name="narze" label="Support Me" />
-  <Menu items={menuItems} />
-  <Social {url} {title} />
-</div>
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
-<main class="container h-screen flex flex-col items-center dark:bg-slate-800">
+<main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
   <Navbar {modalViewed} modes="training" />
 
   <span class="flex gap-4 dark:text-white my-2">
@@ -388,6 +375,121 @@
       }}
     />
   {/if}
+
+  <!-- Extended Training Content Section - Second Screen -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-8 mt-16 dark:text-gray-200 text-gray-700">
+    <!-- Training Hero Description -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold mb-4 dark:text-white text-gray-800">
+        🎓 <strong>Thwordle Training</strong> - ฝึกฝนทักษะ Thwordle ไร้ขีดจำกัด
+      </h2>
+      <p class="text-lg mb-4">
+        <strong>Thwordle Training</strong> คือโหมดฝึกฝนที่ให้คุณเล่น <strong>Thwordle</strong> ได้ไม่จำกัดครั้ง เพื่อพัฒนาทักษะการทายคำภาษาไทย
+      </p>
+      <p class="text-base">
+        ฝึก <strong>Thwordle</strong> ให้เก่งขึ้นด้วยโหมด Training ที่มีคำศัพท์หลากหลาย เตรียมตัวให้พร้อมสำหรับ <strong>Thwordle</strong> รายวัน
+      </p>
+    </div>
+
+    <!-- Training Benefits Section -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        🎯 ประโยชน์ของ Thwordle Training
+      </h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-sakura-pink dark:text-sakura-light">🎮 เล่นไร้ขีดจำกัด</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• ฝึก <strong>Thwordle</strong> ได้ตลอดเวลา ไม่ต้องรอแค่วันละครั้ง</li>
+            <li>• คำใหม่ทุกครั้งที่เล่น Training Mode</li>
+            <li>• ไม่มีการบันทึกสถิติ เน้นการฝึกฝนเป็นหลัก</li>
+            <li>• เล่นซ้ำได้ทันทีเมื่อจบเกม</li>
+          </ul>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-warm-orange dark:text-warm-light">🧠 พัฒนาทักษะ</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• เรียนรู้คำศัพท์ภาษาไทยใหม่ๆ จาก <strong>Thwordle</strong></li>
+            <li>• ฝึกการคิดวิเคราะห์และใช้เหตุผล</li>
+            <li>• เพิ่มความเร็วในการทายคำ</li>
+            <li>• เตรียมความพร้อมสำหรับ <strong>Thwordle</strong> รายวัน</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Training Strategies Section -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        💡 เทคนิคการเล่น Thwordle Training
+      </h3>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-sakura-pink dark:text-sakura-light">
+            🎯 เทคนิคการเริ่มต้น Thwordle Training
+          </summary>
+          <p class="mt-3 text-sm">
+            เริ่มต้นด้วยคำที่มีสระและพยัญชนะหลากหลาย เช่น "เสียง" หรือ "ความ" เพื่อทดสอบตัวอักษรที่มีในคำตอบของ <strong>Thwordle Training</strong>
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-warm-orange dark:text-warm-light">
+            🔄 การใช้ข้อมูลจากการทาย Thwordle
+          </summary>
+          <p class="mt-3 text-sm">
+            สังเกตสีของตัวอักษรใน <strong>Thwordle Training</strong>: สีชมพู (ถูกตำแหน่ง), สีส้ม (มีแต่ผิดที่), สีเทา (ไม่มีในคำตอบ)
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-elegant-grey dark:text-gray-300">
+            📚 การเรียนรู้คำศัพท์ใหม่จาก Thwordle
+          </summary>
+          <p class="mt-3 text-sm">
+            เมื่อไม่รู้คำตอบใน <strong>Thwordle Training</strong> ให้จดจำคำนั้น เพราะอาจจะเจอในโหมดอื่นหรือ <strong>Thwordle</strong> รายวัน
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- Training vs Daily Comparison -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        ⚖️ Training Mode vs Thwordle รายวัน
+      </h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🎓</div>
+          <h4 class="font-semibold mb-2 text-sakura-pink dark:text-sakura-light">Thwordle Training</h4>
+          <ul class="text-sm space-y-1">
+            <li>• เล่นได้ไม่จำกัด</li>
+            <li>• คำใหม่ทุกครั้ง</li>
+            <li>• เน้นการฝึกฝน</li>
+            <li>• ไม่บันทึกสถิติ</li>
+          </ul>
+        </div>
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">📅</div>
+          <h4 class="font-semibold mb-2 text-warm-orange dark:text-warm-light">Thwordle รายวัน</h4>
+          <ul class="text-sm space-y-1">
+            <li>• วันละ 1 ครั้งเท่านั้น</li>
+            <li>• คำเดียวกันทั้งวัน</li>
+            <li>• แข่งขันกับผู้เล่นคนอื่น</li>
+            <li>• บันทึกสถิติและแชร์ผล</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Training Footer -->
+    <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700">
+      <p class="text-sm opacity-80 mb-2">
+        <strong>Thwordle Training</strong> - โหมดฝึกฝนเพื่อเตรียมความพร้อมสำหรับ <strong>Thwordle</strong> รายวัน
+      </p>
+      <p class="text-xs opacity-60">
+        ฝึกฝน <strong>Thwordle</strong> ให้เก่งขึ้นทุกวัน และเป็นมืออาชีพในการทายคำภาษาไทย
+      </p>
+    </footer>
+  </section>
 </main>
 
 <style lang="postcss">
@@ -417,10 +519,6 @@
   }
 
   @media (max-height: 800px) {
-    .footer-wrapper {
-      display: none;
-    }
-
     .share-button {
       margin-bottom: 1rem;
     }

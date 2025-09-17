@@ -83,4 +83,8 @@ export default {
     day: "S21",
     word: "สงกรานต์",
   },
+  s22_4f8e: {
+    day: "S22",
+    word: "เทคโนโลยี",
+  },
 }

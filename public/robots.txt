@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thwordle.app/sitemap.xml
+
+# Disallow crawling of sensitive or unnecessary paths
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /build/
+Disallow: /dist/
+
+# Allow specific important files
+Allow: /words.json
+Allow: /ads.txt

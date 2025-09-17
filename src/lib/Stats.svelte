@@ -34,25 +34,25 @@
 
   <div class="flex gap-4 w-full justify-center px-2 sm:px-4">
     <div
-      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-slate-200 rounded-lg justify-center"
+      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-sakura-light dark:bg-elegant-dark rounded-lg justify-center"
     >
       <div class="text-3xl sm:text-4xl">{gamesCount}</div>
       <div class="text-sm sm:text-xl">เกม</div>
     </div>
     <div
-      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-slate-200 rounded-lg justify-center"
+      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-sakura-light dark:bg-elegant-dark rounded-lg justify-center"
     >
       <div class="text-3xl sm:text-4xl">{winPercentage}</div>
       <div class="text-sm sm:text-xl">% ชนะ</div>
     </div>
     <div
-      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-slate-200 rounded-lg justify-center"
+      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-sakura-light dark:bg-elegant-dark rounded-lg justify-center"
     >
       <div class="text-3xl sm:text-4xl">{currentStreak}</div>
       <div class="text-base sm:text-xl">วันติดกัน</div>
     </div>
     <div
-      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-slate-200 rounded-lg justify-center"
+      class="flex flex-col flex-1 text-center text-sm sm:text-base p-2 bg-sakura-light dark:bg-elegant-dark rounded-lg justify-center"
     >
       <div class="text-3xl sm:text-4xl">{maxStreak}</div>
       <div class="text-base sm:text-xl">วันติดกัน (สูงสุด)</div>

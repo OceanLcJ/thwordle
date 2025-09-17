@@ -3,9 +3,6 @@
 
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
-  import Kofi from "./lib/Kofi.svelte"
-  import Menu from "./lib/Menu.svelte"
-  import Social from "./lib/Social.svelte"
   import {
     CharState,
     generateAlphabetStateMap,
@@ -23,16 +20,11 @@
 
   export let specialId
 
-  const url = "https://thwordle.vercel.app"
-  const title = "Thwordle : Thai Wordle เวอเดิ้ลภาษาไทย"
+  const title = `Thwordle Special ${specialWords[specialId]?.day || ''} - ด่านพิเศษ Thwordle`
+  const url = "https://thwordle.app"
   let words = []
 
-  const menuItems = [
-    { name: "Twitter", url: "https://twitter.com/thwordle" },
-    { name: "Github", url: "https://github.com/narze/thwordle" },
-  ]
-
-  const description = "Thwordle : เวอเดิ้ลภาษาไทย"
+  const description = `เล่น Thwordle ด่านพิเศษ ${specialWords[specialId]?.day || ''} - เกมทายคำภาษาไทยที่ท้าทายพิเศษ พร้อมคำศัพท์ที่คัดสรรมาเป็นพิเศษ`
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
@@ -126,11 +118,11 @@
   // $: validate = validateWord(input, solution)
 
   const colors = {
-    [CharState.Correct]: "bg-green-500 border-green-500 text-white",
+    [CharState.Correct]: "bg-sakura-pink border-sakura-pink dark:bg-sakura-dark dark:border-sakura-dark text-white",
     [CharState.OutOfPlace]:
-      "bg-yellow-500 border-yellow-500 dark:bg-amber-500 dark:border-amber-500 text-white",
-    [CharState.Wrong]: "bg-gray-500 border-gray-500 text-white dark:bg-gray-700 dark:text-white",
-    [CharState.NotUsed]: "bg-white text-black dark:bg-gray-500 dark:text-white",
+      "bg-warm-orange border-warm-orange dark:bg-warm-dark dark:border-warm-dark text-white",
+    [CharState.Wrong]: "bg-elegant-grey border-elegant-grey dark:bg-elegant-dark dark:border-elegant-dark text-white",
+    [CharState.NotUsed]: "bg-pure-white text-black dark:bg-pure-charcoal dark:text-white border-gray-200 dark:border-gray-600",
   }
 
   onMount(async () => {
@@ -298,14 +290,9 @@
   })
 </script>
 
-<div class="footer-wrapper">
-  <Kofi name="narze" label="Support Me" />
-  <Menu items={menuItems} />
-  <Social {url} {title} />
-</div>
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
-<main class="container h-screen flex flex-col items-center">
+<main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
   <Navbar {modalViewed} modes="special" />
 
   <span class="flex gap-2 dark:text-white">
@@ -460,6 +447,108 @@
       }}
     />
   {/if}
+
+  <!-- Extended Special Content Section - Second Screen -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-8 mt-16 dark:text-gray-200 text-gray-700">
+    <!-- Special Challenge Hero -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold mb-4 dark:text-white text-gray-800">
+        🌟 <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> - ด่านท้าทายพิเศษ
+      </h2>
+      <p class="text-lg mb-4">
+        <strong>Thwordle Special</strong> คือด่านพิเศษที่มีคำศัพท์ท้าทาย ทดสอบทักษะ <strong>Thwordle</strong> ของคุณในระดับสูงขึ้น
+      </p>
+      <p class="text-base">
+        เฉลย <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> และแชร์ความสำเร็จกับเพื่อนๆ เพื่อพิสูจน์ทักษะการเล่น <strong>Thwordle</strong>
+      </p>
+    </div>
+
+    <!-- Special Challenge Features -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        ✨ จุดเด่นของ Thwordle Special Challenges
+      </h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🎯</div>
+          <h4 class="font-semibold mb-2 text-sakura-pink dark:text-sakura-light">คำศัพท์ท้าทาย</h4>
+          <p class="text-sm">คำตอบใน <strong>Thwordle Special</strong> คัดสรรมาเป็นพิเศษ เพื่อทดสอบความรู้ภาษาไทย</p>
+        </div>
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🏆</div>
+          <h4 class="font-semibold mb-2 text-warm-orange dark:text-warm-light">ความสำเร็จพิเศษ</h4>
+          <p class="text-sm">เล่น <strong>Thwordle Special</strong> สำเร็จจะได้รับความภาคภูมิใจเป็นพิเศษ</p>
+        </div>
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🔗</div>
+          <h4 class="font-semibold mb-2 text-elegant-grey dark:text-gray-300">แชร์ได้</h4>
+          <p class="text-sm">แชร์ผลการเล่น <strong>Thwordle Special</strong> และเชิญเพื่อนมาลองเล่น</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Access Special Challenges -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        🔐 วิธีเข้าถึง Thwordle Special Challenges
+      </h3>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-sakura-pink dark:text-sakura-light">
+            💌 รับรหัสด่านพิเศษ Thwordle Special
+          </summary>
+          <p class="mt-3 text-sm">
+            รหัส <strong>Thwordle Special</strong> จะถูกแชร์ผ่านช่องทางต่างๆ เช่น โซเชียลมีเดีย หรือจากเพื่อนที่เล่น <strong>Thwordle</strong> แล้ว
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-warm-orange dark:text-warm-light">
+            🎮 เล่น Thwordle Special Challenge
+          </summary>
+          <p class="mt-3 text-sm">
+            ใส่รหัสในหน้าหลักของ <strong>Thwordle</strong> หรือคลิกลิงก์ <strong>Thwordle Special</strong> ที่เพื่อนแชร์มาโดยตรง
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-elegant-grey dark:text-gray-300">
+            🏁 ความท้าทายของ Thwordle Special
+          </summary>
+          <p class="mt-3 text-sm">
+            ด่านพิเศษจะมีความยากแตกต่างกัน บางด่าน <strong>Thwordle Special</strong> อาจมีคำที่ยากกว่าปกติ เพื่อทดสอบผู้เล่นระดับสูง
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- Special Challenge Statistics -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        📊 สถิติ Thwordle Special Challenge
+      </h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-sakura-pink dark:text-sakura-light">🎯 ด่านปัจจุบัน</h4>
+          <div class="text-2xl font-bold mb-2">{specialWords[specialId]?.day || 'N/A'}</div>
+          <p class="text-sm">คุณกำลังเล่น <strong>Thwordle Special</strong> ด่านที่ {specialWords[specialId]?.day?.replace('S', '') || 'N/A'}</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-warm-orange dark:text-warm-light">🔤 คำตอบ</h4>
+          <div class="text-2xl font-bold mb-2">"{specialWords[specialId]?.word || 'กำลังโหลด...'}"</div>
+          <p class="text-sm">คำตอบของ <strong>Thwordle Special</strong> ด่านนี้ (แสดงหลังเล่นเสร็จแล้ว)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Footer -->
+    <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700">
+      <p class="text-sm opacity-80 mb-2">
+        <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> - ด่านท้าทายพิเศษสำหรับผู้เล่น <strong>Thwordle</strong> ระดับสูง
+      </p>
+      <p class="text-xs opacity-60">
+        เล่น <strong>Thwordle Special</strong> ให้สำเร็จ และแชร์ความภาคภูมิใจกับชุมชน <strong>Thwordle</strong>
+      </p>
+    </footer>
+  </section>
 </main>
 
 <style>
@@ -489,10 +578,6 @@
   }
 
   @media (max-height: 800px) {
-    .footer-wrapper {
-      display: none;
-    }
-
     .share-button {
       margin-bottom: 1rem;
     }

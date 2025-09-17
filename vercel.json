@@ -1,0 +1,116 @@
+{
+  "rewrites": [
+    {
+      "source": "/training",
+      "destination": "/#/training"
+    },
+    {
+      "source": "/special/special1",
+      "destination": "/#/s/special1"
+    },
+    {
+      "source": "/special/s2",
+      "destination": "/#/s/s2"
+    },
+    {
+      "source": "/special/s3",
+      "destination": "/#/s/s3b3a35b99"
+    },
+    {
+      "source": "/special/s4",
+      "destination": "/#/s/s4_7d7f803a"
+    },
+    {
+      "source": "/special/s5",
+      "destination": "/#/s/s5_34c6e86d"
+    },
+    {
+      "source": "/special/s6",
+      "destination": "/#/s/s6_dfbe2baa"
+    },
+    {
+      "source": "/special/s7",
+      "destination": "/#/s/s7_761d3701"
+    },
+    {
+      "source": "/special/s8",
+      "destination": "/#/s/s8_cf3db809"
+    },
+    {
+      "source": "/special/s9",
+      "destination": "/#/s/s9_03db"
+    },
+    {
+      "source": "/special/s10",
+      "destination": "/#/s/s10_4aa3"
+    },
+    {
+      "source": "/special/s11",
+      "destination": "/#/s/s11_e846"
+    },
+    {
+      "source": "/special/s12",
+      "destination": "/#/s/s12_9c55"
+    },
+    {
+      "source": "/special/s13",
+      "destination": "/#/s/s13_68a6"
+    },
+    {
+      "source": "/special/s14",
+      "destination": "/#/s/s14_193f"
+    },
+    {
+      "source": "/special/s15",
+      "destination": "/#/s/s15_472e"
+    },
+    {
+      "source": "/special/s16",
+      "destination": "/#/s/s16_e481"
+    },
+    {
+      "source": "/special/s17",
+      "destination": "/#/s/s17_2f5a"
+    },
+    {
+      "source": "/special/s18",
+      "destination": "/#/s/s18_03fe"
+    },
+    {
+      "source": "/special/s19",
+      "destination": "/#/s/s19_b8f4"
+    },
+    {
+      "source": "/special/s20",
+      "destination": "/#/s/s20_02af"
+    },
+    {
+      "source": "/special/s21",
+      "destination": "/#/s/s21_9beb"
+    },
+    {
+      "source": "/special/s22",
+      "destination": "/#/s/s22_4f8e"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

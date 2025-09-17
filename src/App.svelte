@@ -3,9 +3,6 @@
 
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
-  import Kofi from "./lib/Kofi.svelte"
-  import Menu from "./lib/Menu.svelte"
-  import Social from "./lib/Social.svelte"
   import {
     CharState,
     generateAlphabetStateMap,
@@ -19,15 +16,10 @@
   import AlertModal from "./lib/AlertModal.svelte"
   import { layouts } from "./lib/layouts"
 
-  const url = "https://thwordle.vercel.app"
   const title = "Thwordle : Thai Wordle เวอเดิ้ลภาษาไทย"
 
-  const menuItems = [
-    { name: "Twitter", url: "https://twitter.com/thwordle" },
-    { name: "Github", url: "https://github.com/narze/thwordle" },
-  ]
-
   const description = "Thwordle : เวอเดิ้ลภาษาไทย"
+  const url = "https://thwordle.app"
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
@@ -121,11 +113,11 @@
   // $: validate = validateWord(input, solution)
 
   const colors = {
-    [CharState.Correct]: "bg-green-500 border-green-500 text-white",
+    [CharState.Correct]: "bg-sakura-pink border-sakura-pink dark:bg-sakura-dark dark:border-sakura-dark text-white",
     [CharState.OutOfPlace]:
-      "bg-yellow-500 border-yellow-500 dark:bg-amber-500 dark:border-amber-500 text-white",
-    [CharState.Wrong]: "bg-gray-500 border-gray-500 text-white dark:bg-gray-700 dark:text-white",
-    [CharState.NotUsed]: "bg-white text-black dark:bg-gray-500 dark:text-white",
+      "bg-warm-orange border-warm-orange dark:bg-warm-dark dark:border-warm-dark text-white",
+    [CharState.Wrong]: "bg-elegant-grey border-elegant-grey dark:bg-elegant-dark dark:border-elegant-dark text-white",
+    [CharState.NotUsed]: "bg-pure-white text-black dark:bg-pure-charcoal dark:text-white border-gray-200 dark:border-gray-600",
   }
 
   onMount(async () => {
@@ -290,14 +282,9 @@
   })
 </script>
 
-<div class="footer-wrapper">
-  <Kofi name="narze" label="Support Me" />
-  <Menu items={menuItems} />
-  <Social {url} {title} />
-</div>
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
-<main class="container h-screen flex flex-col items-center dark:bg-slate-800">
+<main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
   <Navbar {modalViewed} modes="daily" />
 
   <span class="flex gap-4 dark:text-white my-2">
@@ -308,7 +295,7 @@
   <!-- DEBUG: Solution word -->
   <!-- <input type="text" class="border" bind:value={solution} /> -->
   <!-- Check Solution -->
-  <div class="attempts grow overflow-y-auto" bind:this={attemptsContainer}>
+  <div class="attempts" bind:this={attemptsContainer}>
     {#each attempts as input, n (n)}
       <div class="flex justify-center my-1">
         {#each validateWord(input, solution) as { correct, char }, idx (idx)}
@@ -328,7 +315,7 @@
       <div class="flex justify-center my-1">
         {#each new Array(solutionLength).fill(0) as _, i}
           <div
-            class={`bg-white attempt-key border-solid border-2 flex items-center justify-center mx-0.5 text-3xl font-bold rounded dark:bg-slate-800 dark:text-white`}
+            class={`bg-white attempt-key border-solid border-2 flex items-center justify-center mx-0.5 text-3xl font-bold rounded dark:bg-pure-charcoal dark:text-white border-gray-200 dark:border-gray-600`}
           >
             {splittedInput[i] || ""}
           </div>
@@ -340,7 +327,7 @@
       <div class="flex justify-center my-1">
         {#each new Array(solutionLength).fill(0) as _}
           <div
-            class={`${"bg-white"} attempt-key border-solid border-2 flex items-center justify-center mx-0.5 text-3xl font-bold text-white rounded dark:bg-slate-800 dark:text-white`}
+            class={`bg-white attempt-key border-solid border-2 flex items-center justify-center mx-0.5 text-3xl font-bold text-white rounded dark:bg-pure-charcoal dark:text-white border-gray-200 dark:border-gray-600`}
           />
         {/each}
       </div>
@@ -351,7 +338,7 @@
   <div class="layout my-4 w-full px-1 max-w-2xl">
     <input
       type="text"
-      class="w-full sm:w-[400px] block border mb-3.5 px-6 py-2 mx-auto text-center dark:bg-gray-600 dark:text-white dark:placeholder:text-white"
+      class="w-full sm:w-[400px] block border border-sakura-pink mb-3.5 px-6 py-2 mx-auto text-center bg-white dark:bg-pure-charcoal dark:text-white dark:placeholder:text-white focus:ring-2 focus:ring-sakura-pink focus:border-sakura-pink rounded-md"
       on:keypress|preventDefault={(e) => {
         inputKey(e.key)
       }}
@@ -373,11 +360,11 @@
               on:click={() => inputKey(alphabet)}
               class={colors[alphabetStateMap[alphabet]] +
                 " " +
-                `${"⇧↵⬅".includes(alphabet) ? "border-gray-500" : ""}` +
+                `${"⇧↵⬅".includes(alphabet) ? "border-elegant-grey dark:border-elegant-dark" : ""}` +
                 " " +
                 `${$settings.layout === "ก-ฮ" ? "layout-no-shift" : ""}` +
                 " " +
-                "flex-grow layout-key border-solid border-2 flex items-end justify-end text-xl font-bold rounded text-black"}
+                "flex-grow layout-key border-solid border-2 flex items-end justify-end text-xl font-bold rounded"}
             >
               {alphabet}
               <!-- Inverse character -->
@@ -401,7 +388,7 @@
     {#if gameEnded}
       <button
         on:click={copyResult}
-        class="flex items-center justify-center rounded border mx-2 p-2.5 bg-green-300 border-green-300 text-xs font-bold cursor-pointer bg-green-200 hover:bg-green-300 active:bg-green-400"
+        class="flex items-center justify-center rounded border mx-2 p-2.5 bg-sakura-pink border-sakura-pink text-white text-xs font-bold cursor-pointer hover:bg-sakura-dark active:bg-sakura-dark"
       >
         {copied ? "Copied" : "Share"}
       </button>
@@ -410,12 +397,121 @@
         on:click={() => {
           showSpecialModal = !showSpecialModal
         }}
-        class="flex items-center justify-center rounded border mx-2 p-3 bg-blue-300 border-blue-500 text-xs font-bold cursor-pointer hover:bg-blue-300 active:bg-blue-400"
+        class="flex items-center justify-center rounded border mx-2 p-3 bg-warm-orange border-warm-orange text-white text-xs font-bold cursor-pointer hover:bg-warm-dark active:bg-warm-dark"
       >
         Special
       </button>
     {/if}
   </div>
+
+  <!-- Extended Content Section - Second Screen -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-8 mt-16 dark:text-gray-200 text-gray-700">
+    <!-- Hero Description -->
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold mb-4 dark:text-white text-gray-800">
+        🎯 <strong>Thwordle</strong> - เกมทายคำภาษาไทยที่สนุกที่สุด
+      </h2>
+      <p class="text-lg mb-4">
+        <strong>Thwordle</strong> เป็นเกมทายคำภาษาไทยที่สนุกและท้าทาย เหมาะสำหรับผู้ที่ต้องการฝึกทักษะภาษาไทย
+      </p>
+      <p class="text-base">
+        เล่น <strong>Thwordle</strong> ฟรีทุกวัน ทายคำใหม่ได้ทุก 24 ชั่วโมง พร้อมแชร์ผลการเล่นให้เพื่อนๆ ได้เห็น
+      </p>
+    </div>
+
+    <!-- How to Play Section -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        📖 วิธีเล่น Thwordle
+      </h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-sakura-pink dark:text-sakura-light">🎲 กติกาการเล่น</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• ทายคำภาษาไทยภายใน 6 ครั้ง</li>
+            <li>• แต่ละคำตอบมีจำนวนตัวอักษรเท่ากัน</li>
+            <li>• ใช้คีย์บอร์ดบนหน้าจอหรือคีย์บอร์ดคอมพิวเตอร์</li>
+            <li>• คำตอบจะเปลี่ยนทุกวันเที่ยงคืน</li>
+          </ul>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <h4 class="font-semibold mb-3 text-warm-orange dark:text-warm-light">🎨 ความหมายของสี</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• <span class="inline-block w-4 h-4 bg-sakura-pink rounded mr-2"></span>สีชมพู: ตัวอักษรถูกตำแหน่ง</li>
+            <li>• <span class="inline-block w-4 h-4 bg-warm-orange rounded mr-2"></span>สีส้ม: มีตัวอักษรนี้แต่ผิดตำแหน่ง</li>
+            <li>• <span class="inline-block w-4 h-4 bg-gray-400 rounded mr-2"></span>สีเทา: ไม่มีตัวอักษรนี้ในคำตอบ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        ❓ คำถามที่พบบ่อยเกี่ยวกับ Thwordle
+      </h3>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-sakura-pink dark:text-sakura-light">
+            Thwordle แตกต่างจาก Wordle อย่างไร?
+          </summary>
+          <p class="mt-3 text-sm">
+            <strong>Thwordle</strong> เป็นเวอร์ชันภาษาไทยของ Wordle ที่ใช้คำศัพท์ภาษาไทย รองรับการใช้สระและวรรณยุกต์ภาษาไทย มีระบบคีย์บอร์ดพิเศษสำหรับภาษาไทย
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-warm-orange dark:text-warm-light">
+            เล่น Thwordle ได้กี่ครั้งต่อวัน?
+          </summary>
+          <p class="mt-3 text-sm">
+            เหมือนกับ Wordle ต้นฉบับ คุณสามารถเล่น <strong>Thwordle</strong> ได้วันละ 1 ครั้ง คำตอบจะเปลี่ยนทุกวันเที่ยงคืน
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-elegant-grey dark:text-gray-300">
+            สามารถแชร์ผลการเล่น Thwordle ได้หรือไม่?
+          </summary>
+          <p class="mt-3 text-sm">
+            ได้! หลังจากเล่นเสร็จแล้ว คุณสามารถกดปุ่ม "Share" เพื่อแชร์ผลการเล่น <strong>Thwordle</strong> ในรูปแบบอีโมจิไปยังโซเชียลมีเดียได้
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="mb-12">
+      <h3 class="text-xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        ⭐ จุดเด่นของ Thwordle
+      </h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🇹🇭</div>
+          <h4 class="font-semibold mb-2 text-sakura-pink dark:text-sakura-light">ภาษาไทยแท้</h4>
+          <p class="text-sm">รองรับคำศัพท์ภาษาไทยครบถ้วน พร้อมสระและวรรณยุกต์</p>
+        </div>
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">🌙</div>
+          <h4 class="font-semibold mb-2 text-warm-orange dark:text-warm-light">Dark Mode</h4>
+          <p class="text-sm">เล่น <strong>Thwordle</strong> ได้ทั้งในโหมดสว่างและโหมดมืด</p>
+        </div>
+        <div class="text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+          <div class="text-3xl mb-3">📱</div>
+          <h4 class="font-semibold mb-2 text-elegant-grey dark:text-gray-300">ใช้งานง่าย</h4>
+          <p class="text-sm">เล่นได้บนทุกอุปกรณ์ ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700">
+      <p class="text-sm opacity-80 mb-2">
+        <strong>Thwordle</strong> - เวอเดิ้ลภาษาไทย | เกมทายคำที่ช่วยพัฒนาการใช้ภาษาไทยอย่างสร้างสรรค์
+      </p>
+      <p class="text-xs opacity-60">
+        เล่น <strong>Thwordle</strong> ฟรีทุกวัน และร่วมสนุกกับชุมชนคนรักภาษาไทย
+      </p>
+    </footer>
+  </section>
 
   <!-- Debug -->
   <!-- <div class="flex justify-center my-20">
@@ -448,6 +544,7 @@
 
   .attempts {
     min-height: 96px;
+    margin-bottom: 2rem;
   }
 
   .share-button {
@@ -467,10 +564,6 @@
   }
 
   @media (max-height: 800px) {
-    .footer-wrapper {
-      display: none;
-    }
-
     .share-button {
       margin-bottom: 1rem;
     }

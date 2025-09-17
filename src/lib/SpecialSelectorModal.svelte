@@ -26,9 +26,9 @@
     >
 
     <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-lg w-full"
+      class="inline-block align-bottom bg-white dark:bg-pure-charcoal rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-lg w-full border border-sakura-pink dark:border-elegant-grey"
     >
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-slate-800 dark:text-white">
+      <div class="bg-white dark:bg-pure-charcoal px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:text-white">
         <h2 class="text-lg">Special</h2>
         <div class="mt-3 text-left grid grid-cols-6 sm:grid-cols-8 gap-1 sm:gap-2">
           {#each Object.entries(specialWords) as [key, { day }] (day)}
@@ -36,8 +36,8 @@
             {@const lose = $data[day]?.lose}
 
             <button
-              class={`border rounded px-1 py-2 sm:p-2 ${
-                win ? "bg-green-500" : lose ? "bg-red-500" : ""
+              class={`border border-sakura-pink dark:border-elegant-grey rounded px-1 py-2 sm:p-2 hover:bg-sakura-light dark:hover:bg-elegant-dark ${
+                win ? "bg-sakura-pink text-white" : lose ? "bg-elegant-grey text-white" : "bg-white dark:bg-pure-charcoal dark:text-white"
               }`}
               on:click={() => {
                 window.location.hash = `#/s/${key}`
@@ -50,11 +50,6 @@
           {/each}
         </div>
 
-        <div class="mt-4">
-          ติดตามคำใหม่ก่อนใครได้ที่ <a href="https://twitter.com/thwordle" class="underline "
-            >Twitter @thwordle</a
-          >
-        </div>
 
         <div class="mt-2 flex flex-row-reverse">
           <button

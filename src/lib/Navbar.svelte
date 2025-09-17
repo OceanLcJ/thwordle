@@ -55,23 +55,23 @@
       <button on:click={() => modalViewed.set(false)}>วิธีเล่น</button>
     </span>
     <h1
-      class={`absolute text-center inset-x-0 top-4 leading-4 text-2xl text-red-400 mb-2 pointer-events-none ${
+      class={`absolute text-center inset-x-0 top-4 leading-4 text-2xl text-sakura-pink mb-2 pointer-events-none ${
         training || special ? "left-12" : ""
       }`}
     >
       Thwordle
       {#if training}
-        <span class="text-amber-600 text-xs relative top-3 right-12 px-1 rounded">Training</span>
+        <span class="text-warm-orange text-xs relative top-3 right-12 px-1 rounded">Training</span>
       {/if}
       {#if special}
-        <span class="text-teal-800 text-xs relative top-3 right-12 px-1 rounded">Special</span>
+        <span class="text-elegant-grey text-xs relative top-3 right-12 px-1 rounded">Special</span>
       {/if}
     </h1>
     <div class="hidden md:block">
       <span class="flex gap-3 justify-center h-full dark:text-white">
         {#if training || special}
           <button
-            class="text-red-400"
+            class="text-sakura-pink hover:text-sakura-dark"
             on:click={() => {
               window.location.href = "/"
             }}
@@ -81,7 +81,7 @@
         {/if}
         {#if daily || training}
           <button
-            class="text-teal-800"
+            class="text-elegant-grey hover:text-elegant-dark"
             on:click={() => {
               showSpecialModal = !showSpecialModal
             }}
@@ -91,7 +91,7 @@
         {/if}
         {#if daily || special}
           <button
-            class="text-amber-600"
+            class="text-warm-orange hover:text-warm-dark"
             on:click={() => {
               window.location.href = "/#/training"
             }}
@@ -114,12 +114,12 @@
             <div
               in:scale={{ duration: 100, start: 0.95 }}
               out:scale={{ duration: 75, start: 0.95 }}
-              class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-gray-100
-                rounded shadow-md"
+              class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-white dark:bg-pure-charcoal
+                rounded shadow-md border border-sakura-pink dark:border-elegant-grey"
             >
               {#if training || special}
                 <button
-                  class="block px-4 py-2 hover:bg-gray-200 hover:text-red-400 w-full"
+                  class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-pink dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
                     window.location.href = "/"
                   }}>Daily</button
@@ -127,7 +127,7 @@
               {/if}
               {#if daily || training}
                 <button
-                  class="block px-4 py-2 hover:bg-gray-200 hover:text-teal-800 w-full"
+                  class="block px-4 py-2 hover:bg-sakura-light hover:text-elegant-grey dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
                     showSpecialModal = !showSpecialModal
                   }}>Special</button
@@ -135,18 +135,18 @@
               {/if}
               {#if daily || special}
                 <button
-                  class="block px-4 py-2 hover:bg-gray-200 hover:text-amber-600 w-full"
+                  class="block px-4 py-2 hover:bg-sakura-light hover:text-warm-orange dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
                     window.location.href = "/#/training"
                   }}>Training</button
                 >
               {/if}
               <button
-                class="block px-4 py-2 hover:bg-gray-200 hover:text-black w-full"
+                class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-dark dark:text-white dark:hover:bg-elegant-dark w-full"
                 on:click={() => (statsModal = true)}>สถิติ</button
               >
               <button
-                class="block px-4 py-2 hover:bg-gray-200 hover:text-black w-full"
+                class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-dark dark:text-white dark:hover:bg-elegant-dark w-full"
                 on:click={() => (settingModal = true)}>ตั้งค่า</button
               >
             </div>

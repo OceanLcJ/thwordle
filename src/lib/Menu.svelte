@@ -11,7 +11,7 @@
   {#each items as { name, url }}
     <a
       href={url}
-      class="sm:px-2.5 px-1 py-0.5 sm:mx-1 bg-white rounded"
+      class="sm:px-2.5 px-1 py-0.5 sm:mx-1 bg-white dark:bg-pure-charcoal border border-sakura-pink dark:border-elegant-grey hover:bg-sakura-light dark:hover:bg-elegant-dark rounded"
       target="_blank"
       rel="noreferrer">{name}</a
     >

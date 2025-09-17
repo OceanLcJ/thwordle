@@ -37,11 +37,11 @@
   ]
 
   const colors = {
-    [CharState.Correct]: "bg-green-500 border-green-500",
+    [CharState.Correct]: "bg-sakura-pink border-sakura-pink dark:bg-sakura-dark dark:border-sakura-dark text-white",
     [CharState.OutOfPlace]:
-      "bg-yellow-500 border-yellow-500 dark:bg-amber-500 dark:border-amber-500",
-    [CharState.Wrong]: "bg-gray-500 border-gray-500",
-    [CharState.NotUsed]: "bg-white dark:bg-slate-800",
+      "bg-warm-orange border-warm-orange dark:bg-warm-dark dark:border-warm-dark text-white",
+    [CharState.Wrong]: "bg-elegant-grey border-elegant-grey dark:bg-elegant-dark dark:border-elegant-dark text-white",
+    [CharState.NotUsed]: "bg-pure-white dark:bg-pure-charcoal border-gray-200 dark:border-gray-600",
   }
 
   export let onClose = () => {}
@@ -85,9 +85,9 @@
         To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
     -->
     <div
-      class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+      class="inline-block align-bottom bg-white dark:bg-pure-charcoal rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-sakura-pink dark:border-elegant-grey"
     >
-      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-slate-800">
+      <div class="bg-white dark:bg-pure-charcoal px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
           <!-- <div
             class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10"
@@ -211,14 +211,6 @@
                 สระและวรรณยุกต์ตัวบน/ล่าง จะไม่ถูกทำเครื่องหมายว่าไม่อยู่ในคำนั้น หากใส่ผิดจุด
               </p>
 
-              <hr class="my-2" />
-
-              <a
-                class="text-gray-500 text-sm underline dark:text-gray-300"
-                href="https://twitter.com/thwordle"
-              >
-                แจ้งบั๊ก / ข้อเสนอแนะ
-              </a>
             </div>
           </div>
         </div>

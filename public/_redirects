@@ -1,0 +1,29 @@
+# Netlify URL重写规则 - 支持SEO友好URL
+# 将SEO友好URL重写为哈希路由，但保持URL在地址栏中
+
+/training  /#/training  200
+/special/special1  /#/s/special1  200
+/special/s2  /#/s/s2  200
+/special/s3  /#/s/s3b3a35b99  200
+/special/s4  /#/s/s4_7d7f803a  200
+/special/s5  /#/s/s5_34c6e86d  200
+/special/s6  /#/s/s6_dfbe2baa  200
+/special/s7  /#/s/s7_761d3701  200
+/special/s8  /#/s/s8_cf3db809  200
+/special/s9  /#/s/s9_03db  200
+/special/s10  /#/s/s10_4aa3  200
+/special/s11  /#/s/s11_e846  200
+/special/s12  /#/s/s12_9c55  200
+/special/s13  /#/s/s13_68a6  200
+/special/s14  /#/s/s14_193f  200
+/special/s15  /#/s/s15_472e  200
+/special/s16  /#/s/s16_e481  200
+/special/s17  /#/s/s17_2f5a  200
+/special/s18  /#/s/s18_03fe  200
+/special/s19  /#/s/s19_b8f4  200
+/special/s20  /#/s/s20_02af  200
+/special/s21  /#/s/s21_9beb  200
+/special/s22  /#/s/s22_4f8e  200
+
+# 所有其他路由回退到主页
+/*  /index.html  200
