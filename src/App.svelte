@@ -335,7 +335,7 @@
   </div>
 
   <!-- Layout -->
-  <div class="layout my-4 w-full px-1 max-w-2xl">
+  <div class="layout my-4 w-full px-1">
     <input
       type="text"
       class="w-full sm:w-[400px] block border border-sakura-pink mb-3.5 px-6 py-2 mx-auto text-center bg-white dark:bg-pure-charcoal dark:text-white dark:placeholder:text-white focus:ring-2 focus:ring-sakura-pink focus:border-sakura-pink rounded-md"
@@ -355,7 +355,7 @@
     {#each currentRows as row, rowIndex}
       <div class="w-full flex flex-row justify-center touch-manipulation">
         {#each row as alphabet, alphabetIndex}
-          <div class="flex-grow flex m-0.5 relative">
+          <div class="flex-grow flex m-0.5 sm:m-0.5 xs:m-0.5 relative">
             <button
               on:click={() => inputKey(alphabet)}
               class={colors[alphabetStateMap[alphabet]] +
@@ -585,6 +585,98 @@
   @media (max-height: 680px) {
     .attempt-key {
       @apply w-12 h-12;
+    }
+  }
+
+  /* 移动端键盘响应式优化 */
+  @media (max-width: 480px) {
+    .layout {
+      @apply px-0.5;
+    }
+
+    .layout-key {
+      @apply px-0 text-base h-12;
+      min-width: 0;
+      font-size: 0.85rem;
+    }
+
+    .layout-key.layout-no-shift {
+      @apply h-10 text-sm;
+    }
+
+    .layout .flex-grow {
+      margin: 0.125rem;
+    }
+  }
+
+  /* iPhone 14 Pro Max 和大屏手机优化 (430-450px) */
+  @media (max-width: 450px) {
+    .layout {
+      @apply px-0.5;
+    }
+
+    .layout-key {
+      @apply px-0 text-sm h-11;
+      min-width: 0;
+      font-size: 0.8rem;
+    }
+
+    .layout-key.layout-no-shift {
+      @apply h-9 text-sm;
+      font-size: 0.75rem;
+    }
+
+    .layout .flex-grow {
+      margin: 0.1rem;
+    }
+
+    .attempt-key {
+      @apply w-11 h-11 text-lg;
+    }
+  }
+
+  /* iPhone 12/13/14 和类似尺寸优化 (390-393px) */
+  @media (max-width: 393px) {
+    .layout {
+      @apply px-0;
+    }
+
+    .layout-key {
+      @apply px-0 text-sm h-9;
+      min-width: 0;
+      font-size: 0.75rem;
+    }
+
+    .layout-key.layout-no-shift {
+      @apply h-7 text-xs;
+      font-size: 0.65rem;
+    }
+
+    .layout .flex-grow {
+      margin: 0.0625rem;
+    }
+
+    .attempt-key {
+      @apply w-9 h-9 text-lg;
+    }
+  }
+
+  @media (max-width: 375px) {
+    .layout-key {
+      @apply px-0 text-sm h-10;
+      font-size: 0.75rem;
+    }
+
+    .layout-key.layout-no-shift {
+      @apply h-8 text-xs;
+    }
+
+    .attempt-key {
+      @apply w-10 h-10 text-xl;
+    }
+
+    .layout .flex-grow {
+      margin: 0.0625rem;
     }
   }
 </style>
