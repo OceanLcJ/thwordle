@@ -1,8 +1,16 @@
-export function calculateGamesCount(data) {
+interface GameData {
+  win?: boolean;
+  lose?: boolean;
+  attempts?: string[];
+}
+
+type GameRecord = Record<string, GameData>;
+
+export function calculateGamesCount(data: GameRecord): number {
   return Object.values(data).filter(({ win, lose }) => win || lose).length
 }
 
-export function calculateWinPercentage(data) {
+export function calculateWinPercentage(data: GameRecord): number {
   const gamesCount = calculateGamesCount(data)
 
   if (gamesCount == 0) return 0
@@ -10,7 +18,7 @@ export function calculateWinPercentage(data) {
   return gamesCount ? Math.round((winsCount / gamesCount) * 100) : 0
 }
 
-export function calculateCurrentStreak(data) {
+export function calculateCurrentStreak(data: GameRecord): number {
   const streaks = [0]
   let entries: [string, any][] = Object.entries(data)
 
@@ -21,7 +29,7 @@ export function calculateCurrentStreak(data) {
     delete entries[entries.length - 1]
   }
 
-  entries.forEach(([day, { win, lose }]) => {
+  entries.forEach(([, { win }]) => {
     if (win) {
       streaks[streaks.length - 1]++
     } else {
@@ -31,13 +39,13 @@ export function calculateCurrentStreak(data) {
 
   return streaks[streaks.length - 1]
 }
-export function calculateMaxStreak(data) {
+export function calculateMaxStreak(data: GameRecord): number {
   const streaks = [0]
   let entries: [string, any][] = Object.entries(data)
 
   entries = entries.sort(([dayA], [dayB]) => +dayA - +dayB)
 
-  entries.forEach(([day, { win, lose }]) => {
+  entries.forEach(([, { win }]) => {
     if (win) {
       streaks[streaks.length - 1]++
     } else {
@@ -48,11 +56,11 @@ export function calculateMaxStreak(data) {
   return Math.max(...streaks)
 }
 
-export function calculateGuessDistribution(data) {
+export function calculateGuessDistribution(data: GameRecord): number[] {
   const distribution = [0, 0, 0, 0, 0, 0, 0]
 
   Object.values(data).forEach(({ win, lose, attempts }) => {
-    if (win) {
+    if (win && attempts) {
       distribution[attempts.length - 1]++
     } else if (lose) {
       distribution[6]++
@@ -62,7 +70,7 @@ export function calculateGuessDistribution(data) {
   return distribution
 }
 
-export function filterNormalDays(data) {
+export function filterNormalDays(data: GameRecord): GameRecord {
   const attemptsData = {}
 
   Object.entries(data).forEach(([day, attempt]) => {
@@ -74,7 +82,7 @@ export function filterNormalDays(data) {
   return attemptsData
 }
 
-export function filterSpecialDays(data) {
+export function filterSpecialDays(data: GameRecord): GameRecord {
   const attemptsData = {}
 
   Object.entries(data).forEach(([day, attempt]) => {

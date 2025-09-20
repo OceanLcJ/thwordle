@@ -1,5 +1,4 @@
 import { writable } from "svelte/store"
-import { CharState } from "./Wordle"
 
 interface IStore {
   modalViewed: boolean

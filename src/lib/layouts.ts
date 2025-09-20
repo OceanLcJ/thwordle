@@ -1,5 +1,5 @@
-function groupArr(data, n) {
-  var group = []
+function groupArr(data: string[], n: number): string[][] {
+  var group: string[][] = []
   for (var i = 0, j = 0; i < data.length; i++) {
     if (i >= n && i % n === 0) j++
     group[j] = group[j] || []

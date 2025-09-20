@@ -15,6 +15,8 @@ jest.mock("svelte", () => {
 })
 
 it("works", () => {
-  const { getByText } = render(App, {})
-  expect(getByText("Thwordle")).toBeInTheDocument()
+  const { container } = render(App, {})
+  const mainTitle = container.querySelector('h1')
+  expect(mainTitle).toBeInTheDocument()
+  expect(mainTitle).toHaveTextContent("Thwordle")
 })

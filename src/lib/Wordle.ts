@@ -78,7 +78,7 @@ export function validateWord(word: string, solution: string) {
         // Remove one matching char from solution, so that it cannot be matched again
         const idx1 = solutionSplitted.indexOf(char)
         const idx2 = solutionNormalizedSplitted.indexOf(cNormalized)
-        let correctChar
+        let correctChar: string
 
         if (idx1 !== -1) {
           correctChar = solutionSplitted[idx1]
@@ -110,7 +110,7 @@ export function generateAlphabetStateMap(
 ): Record<string, CharState> {
   const map = {}
 
-  alphabets.forEach((a, idx) => {
+  alphabets.forEach((a) => {
     map[a] = CharState.NotUsed
   })
 
