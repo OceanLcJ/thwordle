@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { tick } from "svelte"
   import specialWords from "./special-words"
   import { data } from "./store"
 
@@ -41,10 +40,7 @@
               }`}
               on:click={() => {
                 window.location.hash = `#/s/${key}`
-
-                tick().then(() => {
-                  window.location.reload()
-                })
+                onClose()
               }}>{day}</button
             >
           {/each}

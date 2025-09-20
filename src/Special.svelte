@@ -16,37 +16,60 @@
   import AlertModal from "./lib/AlertModal.svelte"
   import SpecialModal from "./lib/SpecialSelectorModal.svelte"
   import { layouts } from "./lib/layouts"
-  import specialWords from "./lib/special-words"
+  import specialWords, { resolveSpecialId } from "./lib/special-words"
 
   export let specialId
 
-  const title = `Thwordle Special ${specialWords[specialId]?.day || ''} - ด่านพิเศษ Thwordle`
+  let title = ''
   const url = "https://thwordle.app"
   let words = []
 
-  const description = `เล่น Thwordle ด่านพิเศษ ${specialWords[specialId]?.day || ''} - เกมทายคำภาษาไทยที่ท้าทายพิเศษ พร้อมคำศัพท์ที่คัดสรรมาเป็นพิเศษ`
+  let description = ''
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
 
   const gtagId = "G-N3FL38P2NM"
 
-  if (!specialWords[specialId]) {
-    alert("รหัสลับผิด กรุณาลองใหม่อีกครั้ง")
-    window.location.href = "/"
-  }
+  let specialDay: string | undefined
+  let previousSpecialId: string | undefined
+  let resolvedSpecialId: string | undefined
+  let lastInvalidSpecialId: string | undefined
+
+  $: resolvedSpecialId = resolveSpecialId(specialId)
+
+  $: title = `Thwordle Special ${specialWords[resolvedSpecialId]?.day || ''} - ด่านพิเศษ Thwordle`
+  $: description = `เล่น Thwordle ด่านพิเศษ ${specialWords[resolvedSpecialId]?.day || ''} - เกมทายคำภาษาไทยที่ท้าทายพิเศษ พร้อมคำศัพท์ที่คัดสรรมาเป็นพิเศษ`
 
   $: rows = layouts[$settings.layout].rows
   $: rowsShifted = layouts[$settings.layout].rowsShifted
 
-  const specialDay = specialWords[specialId]?.day
+
+
+  $: if (resolvedSpecialId && resolvedSpecialId !== previousSpecialId) {
+    hydrateSpecialState(resolvedSpecialId)
+    previousSpecialId = resolvedSpecialId
+    ensureCanonicalHash(resolvedSpecialId)
+  }
+
+  $: if (!resolvedSpecialId) {
+    specialDay = undefined
+    previousSpecialId = undefined
+
+    if (specialId && specialId !== lastInvalidSpecialId) {
+      handleInvalidSpecialId(specialId)
+      lastInvalidSpecialId = specialId
+    }
+  } else {
+    lastInvalidSpecialId = undefined
+  }
 
   const attemptLimit = 6
 
   let input = ""
-  $: solution = specialWords[specialId]?.word
-  let attempts: string[] = $data[specialDay]?.attempts || []
+  $: solution = resolvedSpecialId ? specialWords[resolvedSpecialId]?.word ?? "" : ""
+  let attempts: string[] = []
   $: validations = attempts.map((word) => validateWord(word, solution))
-  let gameEnded = !!$data[specialDay]?.win || !!$data[specialDay]?.lose
+  let gameEnded = false
   let attemptsContainer
   let copied = false
   let lose = false
@@ -60,7 +83,7 @@
   let alertDelay = 1500
 
   $: attemptsLength = attempts.length
-  $: solutionLength = splitWord(solution).length
+  $: solutionLength = solution ? splitWord(solution).length : 0
   $: alertDelay = 500 + 150 * solutionLength
   $: currentRows = shifted ? rowsShifted : rows
   $: inverseRows = shifted ? rows : rowsShifted
@@ -71,7 +94,9 @@
   $: input = input.replace(/[^ก-๙]/g, "")
   $: splittedInput = splitWord(input)
   $: {
-    data.set({ ...$data, [`${specialDay}`]: { attempts, win, lose } })
+    if (specialDay) {
+      data.set({ ...$data, [`${specialDay}`]: { attempts, win, lose } })
+    }
   }
   $: {
     const validation = validations.slice(-1)[0]
@@ -155,6 +180,59 @@
     }
   }
 
+  function handleInvalidSpecialId(requestedId: string) {
+    if (typeof window === "undefined") {
+      return
+    }
+
+    alert("รหัสลับผิด กรุณาลองใหม่อีกครั้ง")
+    window.location.hash = ""
+  }
+
+  function ensureCanonicalHash(canonicalId: string) {
+    if (typeof window === "undefined") {
+      return
+    }
+
+    const canonicalHash = `#/s/${canonicalId}`
+    if (window.location.hash === canonicalHash) {
+      return
+    }
+
+    const { origin, pathname, search } = window.location
+    window.history.replaceState({}, document.title, `${origin}${pathname}${search}${canonicalHash}`)
+  }
+
+  function hydrateSpecialState(currentSpecialId: string) {
+    const specialMeta = specialWords[currentSpecialId]
+
+    if (!specialMeta) {
+      handleInvalidSpecialId(currentSpecialId)
+      return
+    }
+
+    specialDay = specialMeta.day
+
+    const savedState = specialDay ? $data[specialDay] : undefined
+
+    input = ""
+    attempts = savedState?.attempts ? [...savedState.attempts] : []
+    gameEnded = !!savedState?.win || !!savedState?.lose
+    win = !!savedState?.win
+    lose = !!savedState?.lose
+    copied = false
+    shifted = false
+    alertMessage = ""
+    showAlert = false
+    focusOnTextInput = false
+
+    tick().then(() => {
+      if (attemptsContainer) {
+        attemptsContainer.scrollTop = attemptsContainer.scrollHeight
+      }
+    })
+  }
+
   async function submit() {
     if (gameEnded) {
       return
@@ -197,7 +275,7 @@
     const score: string = (lose ? "X" : `${results.length}`) + `/${attemptLimit}`
 
     navigator.clipboard.writeText(
-      `#Thwordle Special ${specialDay} ${score}\n\n${results.join("\n")}\n${window.location.href}`
+      `#Thwordle Special ${specialDay || ''} ${score}\n\n${results.join("\n")}\n${window.location.href}`
     )
 
     copied = true
@@ -453,13 +531,13 @@
     <!-- Special Challenge Hero -->
     <div class="text-center mb-12">
       <h2 class="text-2xl font-bold mb-4 dark:text-white text-gray-800">
-        🌟 <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> - ด่านท้าทายพิเศษ
+        🌟 <strong>Thwordle Special {specialWords[resolvedSpecialId]?.day || ''}</strong> - ด่านท้าทายพิเศษ
       </h2>
       <p class="text-lg mb-4">
         <strong>Thwordle Special</strong> คือด่านพิเศษที่มีคำศัพท์ท้าทาย ทดสอบทักษะ <strong>Thwordle</strong> ของคุณในระดับสูงขึ้น
       </p>
       <p class="text-base">
-        เฉลย <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> และแชร์ความสำเร็จกับเพื่อนๆ เพื่อพิสูจน์ทักษะการเล่น <strong>Thwordle</strong>
+        เฉลย <strong>Thwordle Special {specialWords[resolvedSpecialId]?.day || ''}</strong> และแชร์ความสำเร็จกับเพื่อนๆ เพื่อพิสูจน์ทักษะการเล่น <strong>Thwordle</strong>
       </p>
     </div>
 
@@ -528,12 +606,12 @@
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
           <h4 class="font-semibold mb-3 text-sakura-pink dark:text-sakura-light">🎯 ด่านปัจจุบัน</h4>
-          <div class="text-2xl font-bold mb-2">{specialWords[specialId]?.day || 'N/A'}</div>
-          <p class="text-sm">คุณกำลังเล่น <strong>Thwordle Special</strong> ด่านที่ {specialWords[specialId]?.day?.replace('S', '') || 'N/A'}</p>
+          <div class="text-2xl font-bold mb-2">{specialWords[resolvedSpecialId]?.day || 'N/A'}</div>
+          <p class="text-sm">คุณกำลังเล่น <strong>Thwordle Special</strong> ด่านที่ {specialWords[resolvedSpecialId]?.day?.replace('S', '') || 'N/A'}</p>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
           <h4 class="font-semibold mb-3 text-warm-orange dark:text-warm-light">🔤 คำตอบ</h4>
-          <div class="text-2xl font-bold mb-2">"{specialWords[specialId]?.word || 'กำลังโหลด...'}"</div>
+          <div class="text-2xl font-bold mb-2">"{specialWords[resolvedSpecialId]?.word || 'กำลังโหลด...'}"</div>
           <p class="text-sm">คำตอบของ <strong>Thwordle Special</strong> ด่านนี้ (แสดงหลังเล่นเสร็จแล้ว)</p>
         </div>
       </div>
@@ -542,7 +620,7 @@
     <!-- Special Footer -->
     <footer class="text-center py-6 border-t border-gray-200 dark:border-gray-700">
       <p class="text-sm opacity-80 mb-2">
-        <strong>Thwordle Special {specialWords[specialId]?.day || ''}</strong> - ด่านท้าทายพิเศษสำหรับผู้เล่น <strong>Thwordle</strong> ระดับสูง
+        <strong>Thwordle Special {specialWords[resolvedSpecialId]?.day || ''}</strong> - ด่านท้าทายพิเศษสำหรับผู้เล่น <strong>Thwordle</strong> ระดับสูง
       </p>
       <p class="text-xs opacity-60">
         เล่น <strong>Thwordle Special</strong> ให้สำเร็จ และแชร์ความภาคภูมิใจกับชุมชน <strong>Thwordle</strong>

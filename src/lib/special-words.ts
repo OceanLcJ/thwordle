@@ -1,4 +1,4 @@
-export default {
+const specialWords = {
   special1: {
     day: "S1",
     word: "ชุดโกโกวา",
@@ -88,3 +88,30 @@ export default {
     word: "เทคโนโลยี",
   },
 }
+
+const legacySpecialIdMap: Record<string, keyof typeof specialWords> = {
+  s1: "special1",
+  s3: "s3b3a35b99",
+  s4: "s4_7d7f803a",
+  s5: "s5_34c6e86d",
+}
+
+export function resolveSpecialId(rawId?: string | null): string | undefined {
+  if (!rawId) {
+    return undefined
+  }
+
+  if (specialWords[rawId]) {
+    return rawId
+  }
+
+  const normalized = rawId.toLowerCase()
+
+  if (specialWords[normalized]) {
+    return normalized
+  }
+
+  return legacySpecialIdMap[normalized]
+}
+
+export default specialWords
