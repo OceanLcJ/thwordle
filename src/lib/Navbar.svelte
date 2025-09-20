@@ -73,7 +73,7 @@
           <button
             class="text-sakura-pink hover:text-sakura-dark"
             on:click={() => {
-              window.location.href = "/"
+              window.location.hash = ""
             }}
           >
             Daily
@@ -93,7 +93,7 @@
           <button
             class="text-warm-orange hover:text-warm-dark"
             on:click={() => {
-              window.location.href = "/#/training"
+              window.location.hash = "#/training"
             }}
           >
             Training
@@ -121,7 +121,8 @@
                 <button
                   class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-pink dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
-                    window.location.href = "/"
+                    show = false
+                    window.location.hash = ""
                   }}>Daily</button
                 >
               {/if}
@@ -129,6 +130,7 @@
                 <button
                   class="block px-4 py-2 hover:bg-sakura-light hover:text-elegant-grey dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
+                    show = false
                     showSpecialModal = !showSpecialModal
                   }}>Special</button
                 >
@@ -137,17 +139,24 @@
                 <button
                   class="block px-4 py-2 hover:bg-sakura-light hover:text-warm-orange dark:text-white dark:hover:bg-elegant-dark w-full"
                   on:click={() => {
-                    window.location.href = "/#/training"
+                    show = false
+                    window.location.hash = "#/training"
                   }}>Training</button
                 >
               {/if}
               <button
                 class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-dark dark:text-white dark:hover:bg-elegant-dark w-full"
-                on:click={() => (statsModal = true)}>สถิติ</button
+                on:click={() => {
+                  show = false
+                  statsModal = true
+                }}>สถิติ</button
               >
               <button
                 class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-dark dark:text-white dark:hover:bg-elegant-dark w-full"
-                on:click={() => (settingModal = true)}>ตั้งค่า</button
+                on:click={() => {
+                  show = false
+                  settingModal = true
+                }}>ตั้งค่า</button
               >
             </div>
           {/if}
