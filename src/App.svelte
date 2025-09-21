@@ -193,7 +193,7 @@
 
     const score: string = (lose ? "X" : `${results.length}`) + `/${attemptLimit}`
 
-    navigator.clipboard.writeText(`#Thwordle ${dateIndex + 1} ${score}\n\n${results.join("\n")}`)
+    navigator.clipboard.writeText(`#Thwordle ${dateIndex + 1} ${score}\n\n${results.join("\n")}\n\nเล่น Thwordle ฟรี: thwordle.app`)
 
     copied = true
 
@@ -288,7 +288,7 @@
   <Navbar {modalViewed} modes="daily" />
 
   <span class="flex gap-4 dark:text-white my-2">
-    <span>วันที่ {dateIndex + 1}</span>
+    <span>Thwordle {dateIndex + 1}</span>
     <span>ครั้งที่ {attemptsLength}/{attemptLimit}</span>
   </span>
 
@@ -475,6 +475,24 @@
             ได้! หลังจากเล่นเสร็จแล้ว คุณสามารถกดปุ่ม "Share" เพื่อแชร์ผลการเล่น <strong>Thwordle</strong> ในรูปแบบอีโมจิไปยังโซเชียลมีเดียได้
           </p>
         </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-sakura-pink dark:text-sakura-light">
+            มี Thwordle eng (เวอร์ชันภาษาอังกฤษ) หรือ Thwordle คณิต หรือไม่?
+          </summary>
+          <p class="mt-3 text-sm">
+            ปัจจุบัน <strong>Thwordle</strong> มีเฉพาะเวอร์ชันภาษาไทย แต่กำลังพัฒนา <strong>Thwordle eng</strong> และ <strong>Thwordle คณิต</strong>
+            สำหรับผู้ที่สนใจเกมทายคำแนวอื่น ๆ โปรดติดตามอัปเดตเร็ว ๆ นี้
+          </p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+          <summary class="font-semibold cursor-pointer text-warm-orange dark:text-warm-light">
+            ต้องการความช่วยเหลือ Thwordle help ได้ที่ไหน?
+          </summary>
+          <p class="mt-3 text-sm">
+            สำหรับ <strong>Thwordle help</strong> คุณสามารถดูวิธีเล่นด้านบน หรือสำรวจกติกาการเล่นในส่วน "วิธีเล่น Thwordle"
+            หากมีปัญหาการใช้งาน สามารถติดต่อทีมงานได้
+          </p>
+        </details>
       </div>
     </div>
 
@@ -508,7 +526,8 @@
         <strong>Thwordle</strong> - เวอเดิ้ลภาษาไทย | เกมทายคำที่ช่วยพัฒนาการใช้ภาษาไทยอย่างสร้างสรรค์
       </p>
       <p class="text-xs opacity-60">
-        เล่น <strong>Thwordle</strong> ฟรีทุกวัน และร่วมสนุกกับชุมชนคนรักภาษาไทย
+        เล่น <strong>Thwordle</strong> ฟรีทุกวัน และร่วมสนุกกับชุมชนคนรักภาษาไทย |
+        ติดตาม <strong>Thwordle eng</strong> และ <strong>Thwordle คณิต</strong> เร็ว ๆ นี้
       </p>
     </footer>
   </section>
