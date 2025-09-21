@@ -28,6 +28,12 @@ export const urlMappings: UrlMapping[] = [
     title: 'Thwordle Training - ฝึกเล่น Thwordle',
     description: 'ฝึกเล่น Thwordle เกมทายคำภาษาไทยได้ไม่จำกัด'
   },
+  {
+    seoPath: '/help',
+    hashRoute: '#/help',
+    title: 'Thwordle Help - คู่มือการเล่น เวอเดิ้ลภาษาไทย',
+    description: 'คู่มือการเล่น Thwordle วิธีเล่น เทคนิค และ FAQ เกมทายคำภาษาไทย thwordle help ไทยเวอเดิ้ล เวอเดิลไทย'
+  },
   // 特殊关卡路由映射
   {
     seoPath: '/special/special1',

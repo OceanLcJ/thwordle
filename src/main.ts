@@ -2,8 +2,8 @@ import "./app.css"
 import Main from "./Main.svelte"
 import { seoRouter } from "./lib/seo-router"
 
-// 暂时禁用SEO路由器来测试移动端卡死问题
-// seoRouter.init()
+// 重新启用SEO路由器以支持 /help 路由
+seoRouter.init()
 
 const app = new Main({
   target: document.getElementById("app"),
