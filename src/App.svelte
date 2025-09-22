@@ -3,6 +3,7 @@
 
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
+  import EnhancedSocial from "./lib/EnhancedSocial.svelte"
   import {
     CharState,
     generateAlphabetStateMap,
@@ -383,24 +384,37 @@
     {/each}
   </div>
 
-  <!-- Input word -->
-  <div class="share-button text-center flex">
+  <!-- Share and Special buttons -->
+  <div class="share-button text-center flex flex-col items-center gap-4">
     {#if gameEnded}
-      <button
-        on:click={copyResult}
-        class="flex items-center justify-center rounded border mx-2 p-2.5 bg-sakura-pink border-sakura-pink text-white text-xs font-bold cursor-pointer hover:bg-sakura-dark active:bg-sakura-dark"
-      >
-        {copied ? "Copied" : "Share"}
-      </button>
+      <!-- Enhanced Social Share Component -->
+      <EnhancedSocial
+        url="https://thwordle.app"
+        title={`Thwordle ${$data.gameNumber}`}
+        gameResult={gameEnded
+          ? getShareResults(validations).map((result) => result.replaceAll("⬜", "⬛")).join('\n')
+          : getShareResults(validations).join('\n')}
+        gameNumber={`${$data.gameNumber}`}
+      />
 
-      <button
-        on:click={() => {
-          showSpecialModal = !showSpecialModal
-        }}
-        class="flex items-center justify-center rounded border mx-2 p-3 bg-warm-orange border-warm-orange text-white text-xs font-bold cursor-pointer hover:bg-warm-dark active:bg-warm-dark"
-      >
-        Special
-      </button>
+      <!-- Traditional Copy Button (fallback) -->
+      <div class="flex gap-2">
+        <button
+          on:click={copyResult}
+          class="flex items-center justify-center rounded border mx-2 p-2.5 bg-sakura-pink border-sakura-pink text-white text-xs font-bold cursor-pointer hover:bg-sakura-dark active:bg-sakura-dark"
+        >
+          {copied ? "Copied" : "Share (简单复制)"}
+        </button>
+
+        <button
+          on:click={() => {
+            showSpecialModal = !showSpecialModal
+          }}
+          class="flex items-center justify-center rounded border mx-2 p-3 bg-warm-orange border-warm-orange text-white text-xs font-bold cursor-pointer hover:bg-warm-dark active:bg-warm-dark"
+        >
+          Special
+        </button>
+      </div>
     {/if}
   </div>
 

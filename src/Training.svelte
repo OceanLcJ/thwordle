@@ -3,6 +3,7 @@
 
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
+  import EnhancedSocial from "./lib/EnhancedSocial.svelte"
   import { CharState, generateAlphabetStateMap, splitWord, validateWord } from "./lib/Wordle"
   import { onMount, tick } from "svelte"
   import Modal from "./lib/Modal.svelte"
@@ -333,24 +334,35 @@
     {/each}
   </div>
 
-  <!-- Input word -->
-  <div class="share-button text-center flex">
+  <!-- Training mode controls -->
+  <div class="share-button text-center flex flex-col items-center gap-4">
     {#if gameEnded}
-      <button
-        on:click={restart}
-        class="flex items-center justify-center rounded border mx-2 p-2.5 border-green-300 text-xs font-bold cursor-pointer bg-green-200 hover:bg-green-300 active:bg-green-400"
-      >
-        เล่นใหม่
-      </button>
+      <!-- Enhanced Social Share Component for Training -->
+      <EnhancedSocial
+        url="https://thwordle.app/#/training"
+        title="Thwordle Training Mode"
+        gameResult={`🎯 ฉันเล่น Thwordle Training ได้แล้ว!\n${attempts} ครั้ง`}
+        gameNumber="Training"
+      />
 
-      <button
-        on:click={() => {
-          showSpecialModal = !showSpecialModal
-        }}
-        class="flex items-center justify-center rounded border mx-2 p-3 bg-blue-300 border-blue-500 text-xs font-bold cursor-pointer hover:bg-blue-300 active:bg-blue-400"
-      >
-        Special
-      </button>
+      <!-- Training specific buttons -->
+      <div class="flex gap-2">
+        <button
+          on:click={restart}
+          class="flex items-center justify-center rounded border mx-2 p-2.5 border-green-300 text-xs font-bold cursor-pointer bg-green-200 hover:bg-green-300 active:bg-green-400"
+        >
+          เล่นใหม่
+        </button>
+
+        <button
+          on:click={() => {
+            showSpecialModal = !showSpecialModal
+          }}
+          class="flex items-center justify-center rounded border mx-2 p-3 bg-blue-300 border-blue-500 text-xs font-bold cursor-pointer hover:bg-blue-300 active:bg-blue-400"
+        >
+          Special
+        </button>
+      </div>
     {/if}
   </div>
 

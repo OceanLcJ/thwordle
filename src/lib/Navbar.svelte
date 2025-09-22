@@ -52,7 +52,7 @@
 <header class="mb-4 w-full h-10 py-2">
   <div class="flex justify-between w-full px-4 h-10">
     <span class="flex justify-center h-full dark:text-white">
-      <button on:click={() => window.location.hash = '#/help'}>Help</button>
+      <!-- Help按钮移至右侧统一管理 -->
     </span>
     <h1
       class={`absolute text-center inset-x-0 top-4 leading-4 text-2xl text-sakura-pink mb-2 pointer-events-none ${

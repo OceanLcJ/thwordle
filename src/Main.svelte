@@ -5,6 +5,7 @@
   import Special from "./Special.svelte"
   import Training from "./Training.svelte"
   import Help from "./Help.svelte"
+  import FloatingSocial from "./lib/FloatingSocial.svelte"
 </script>
 
 {#if $url.hash.indexOf("#/s/") === 0}
@@ -16,3 +17,6 @@
 {:else}
   <App />
 {/if}
+
+<!-- 全局悬浮社交分享按钮 -->
+<FloatingSocial />
