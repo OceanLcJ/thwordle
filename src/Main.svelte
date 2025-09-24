@@ -5,6 +5,7 @@
   import Special from "./Special.svelte"
   import Training from "./Training.svelte"
   import Help from "./Help.svelte"
+  import NotFound from "./NotFound.svelte"
   import FloatingSocial from "./lib/FloatingSocial.svelte"
 </script>
 
@@ -14,8 +15,13 @@
   <Training />
 {:else if $url.hash.indexOf("#/help") === 0}
   <Help />
-{:else}
+{:else if $url.hash === "" || $url.hash === "#/"}
   <App />
+{:else if $url.hash.indexOf("#/404") === 0}
+  <NotFound />
+{:else}
+  <!-- 未匹配的路由显示404页面 -->
+  <NotFound />
 {/if}
 
 <!-- 全局悬浮社交分享按钮 -->

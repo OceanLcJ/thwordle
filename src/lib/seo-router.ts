@@ -50,6 +50,17 @@ export class SeoRouter {
 
         // 触发哈希变化事件，让应用路由系统响应
         window.dispatchEvent(new HashChangeEvent('hashchange'))
+      } else {
+        // 没有找到映射的路径，重定向到404页面
+        console.log('❌ SEO Router - No mapping found, redirecting to 404:', { seoPath: currentPath })
+        const newUrl = window.location.origin + '/' + '#/404'
+        window.history.replaceState({}, '', newUrl)
+
+        // 更新页面标题和描述为404
+        this.updatePageMetadata('/404')
+
+        // 触发哈希变化事件，让应用路由系统响应
+        window.dispatchEvent(new HashChangeEvent('hashchange'))
       }
     }
 

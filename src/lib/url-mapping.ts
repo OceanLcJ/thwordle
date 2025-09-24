@@ -34,6 +34,12 @@ export const urlMappings: UrlMapping[] = [
     title: 'Thwordle Help - คู่มือการเล่น เวอเดิ้ลภาษาไทย',
     description: 'คู่มือการเล่น Thwordle วิธีเล่น เทคนิค และ FAQ เกมทายคำภาษาไทย thwordle help ไทยเวอเดิ้ล เวอเดิลไทย'
   },
+  {
+    seoPath: '/404',
+    hashRoute: '#/404',
+    title: '404 - ไม่พบหน้าที่ต้องการ | Thwordle',
+    description: 'ขออภัย หน้าที่คุณต้องการไม่พบ กลับไปเล่น Thwordle เวอเดิ้ลภาษาไทยได้เลย'
+  },
   // 特殊关卡路由映射
   {
     seoPath: '/special/special1',
