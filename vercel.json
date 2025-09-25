@@ -91,6 +91,10 @@
     {
       "source": "/special/s22",
       "destination": "/#/s/s22_4f8e"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
