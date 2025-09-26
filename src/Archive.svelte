@@ -2,7 +2,6 @@
 <script>
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
-  import { modalViewed } from "./lib/store"
 
   const title = "Thwordle Archive - คลังคำตอบประจำวัน"
   const description = "รวมคำตอบประจำวันของ Thwordle พร้อมคำอธิบายและเทคนิคการแก้ปัญหา เรียนรู้จากคำตอบที่ผ่านมา"
@@ -87,7 +86,7 @@
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
 <main class="min-h-screen bg-sakura-light dark:bg-pure-charcoal">
-  <Navbar {modalViewed} modes="content" />
+  <Navbar modes="content" />
 
   <div class="max-w-6xl mx-auto px-4 py-8">
     <!-- หน้าแรก -->

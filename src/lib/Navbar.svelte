@@ -31,7 +31,6 @@
   })
 
   export let modes: string
-  export let modalViewed
   let statsModal = false
   let settingModal = false
   let showSpecialModal = false

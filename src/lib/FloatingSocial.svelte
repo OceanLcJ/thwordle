@@ -2,7 +2,6 @@
   import { onMount } from 'svelte'
 
   export let url: string = "https://thwordle.app"
-  export let title: string = "Thwordle - เวอเดิ้ลภาษาไทย"
 
   let isExpanded = false
   let isMobile = false

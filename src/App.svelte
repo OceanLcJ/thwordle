@@ -286,7 +286,7 @@
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
 <main class="min-h-screen bg-sakura-light dark:bg-pure-charcoal">
-  <Navbar {modalViewed} modes="daily" />
+  <Navbar modes="daily" />
 
   <!-- Hero Section - 发布商内容优先 -->
   <section class="w-full max-w-4xl mx-auto px-4 py-8 text-center">
@@ -415,7 +415,6 @@
       <!-- Enhanced Social Share Component -->
       <EnhancedSocial
         url="https://thwordle.app"
-        title={`Thwordle ${$data.gameNumber}`}
         gameResult={gameEnded
           ? getShareResults(validations).map((result) => result.replaceAll("⬜", "⬛")).join('\n')
           : getShareResults(validations).join('\n')}

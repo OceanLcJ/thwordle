@@ -239,7 +239,7 @@
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
 <main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
-  <Navbar {modalViewed} modes="training" />
+  <Navbar modes="training" />
 
   <span class="flex gap-4 dark:text-white my-2">
     <span>ครั้งที่ {attemptsLength}/{attemptLimit}</span>
@@ -340,7 +340,6 @@
       <!-- Enhanced Social Share Component for Training -->
       <EnhancedSocial
         url="https://thwordle.app/#/training"
-        title="Thwordle Training Mode"
         gameResult={`🎯 ฉันเล่น Thwordle Training ได้แล้ว!\n${attempts} ครั้ง`}
         gameNumber="Training"
       />

@@ -2,7 +2,6 @@
   import { Facebook, Twitter } from "svelte-share-buttons-component"
 
   export let url: string
-  export let title: string
   export let gameResult: string = ""
   export let gameNumber: string = ""
 

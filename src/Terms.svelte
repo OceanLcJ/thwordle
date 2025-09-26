@@ -2,7 +2,6 @@
 <script>
   import Head from "./lib/Head.svelte"
   import Navbar from "./lib/Navbar.svelte"
-  import { modalViewed } from "./lib/store"
 
   const title = "เงื่อนไขการใช้งาน - Thwordle"
   const description = "เงื่อนไขการใช้งานเว็บไซต์ Thwordle กฎระเบียบ ข้อจำกัด และข้อกำหนดในการเล่นเกม"
@@ -14,7 +13,7 @@
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
 <main class="min-h-screen bg-sakura-light dark:bg-pure-charcoal">
-  <Navbar {modalViewed} modes="content" />
+  <Navbar modes="content" />
 
   <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="text-center mb-12">

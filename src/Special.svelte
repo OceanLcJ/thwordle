@@ -372,7 +372,7 @@
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
 <main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
-  <Navbar {modalViewed} modes="special" />
+  <Navbar modes="special" />
 
   <span class="flex gap-2 dark:text-white">
     <span class="bg-gray-200 dark:text-gray-700 rounded px-2">{specialDay}</span>
@@ -478,7 +478,6 @@
       <!-- Enhanced Social Share Component -->
       <EnhancedSocial
         url={`https://thwordle.app/#/s/${specialId}`}
-        title={`Thwordle Special ${specialId}`}
         gameResult={getShareResults(validations).join('\n')}
         gameNumber={`Special ${specialId}`}
       />
