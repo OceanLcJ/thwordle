@@ -51,16 +51,16 @@ export class SeoRouter {
         // 触发哈希变化事件，让应用路由系统响应
         window.dispatchEvent(new HashChangeEvent('hashchange'))
       } else {
-        // 没有找到映射的路径，重定向到404页面
-        console.log('❌ SEO Router - No mapping found, redirecting to 404:', { seoPath: currentPath })
-        const newUrl = window.location.origin + '/' + '#/404'
+        // 没有找到映射的路径，直接返回首页而不显示 404
+        // 这样可以避免 AdSense 检测到"在不包含发布商内容的屏幕上展示广告"
+        console.log('❌ SEO Router - No mapping found, staying on home page:', { seoPath: currentPath })
+        const newUrl = window.location.origin + '/'
         window.history.replaceState({}, '', newUrl)
 
-        // 更新页面标题和描述为404
-        this.updatePageMetadata('/404')
+        // 更新页面标题和描述为首页
+        this.updatePageMetadata('/')
 
-        // 触发哈希变化事件，让应用路由系统响应
-        window.dispatchEvent(new HashChangeEvent('hashchange'))
+        // 不触发哈希变化事件，保持首页状态
       }
     }
 

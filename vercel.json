@@ -5,6 +5,10 @@
       "destination": "/#/training"
     },
     {
+      "source": "/help",
+      "destination": "/#/help"
+    },
+    {
       "source": "/special/special1",
       "destination": "/#/s/special1"
     },
@@ -91,10 +95,6 @@
     {
       "source": "/special/s22",
       "destination": "/#/s/s22_4f8e"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ],
   "headers": [
