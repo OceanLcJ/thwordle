@@ -26,41 +26,93 @@
       content="https://raw.githubusercontent.com/narze/timelapse/master/projects/thwordle_home.png"
     />
     <script>
-      // 条件化加载 AdSense，避免在 404 或错误页面显示广告
-      function loadAdSense() {
-        // 检查当前是否为 404 页面或错误状态
-        const currentHash = window.location.hash;
-        const isErrorPage = currentHash.includes('#/404') ||
-                           currentHash.includes('error') ||
-                           document.title.includes('404');
+      // AdSense 白名单路由策略 - 只在内容页加载广告，避免在游戏/交互页面展示
+      // 参考：https://support.google.com/publisherpolicies/answer/11112688
 
-        if (!isErrorPage) {
-          const script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4753725476914524';
-          script.crossOrigin = 'anonymous';
-          document.head.appendChild(script);
+      const AD_ALLOWED_PATHS = [
+        '/',           // 主页（有丰富内容说明）
+        '/how-to-play', // 玩法说明页
+        '/faq',        // 常见问题
+        '/archive',    // 每日谜题档案
+        '/blog',       // 开发日志
+        '/about',      // 关于我们
+        '/privacy',    // 隐私政策
+        '/terms'       // 使用条款
+      ];
+
+      // 检查当前路径是否允许展示广告
+      function shouldLoadAds() {
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+
+        // 首先检查是否为内容页路径
+        const isContentPage = AD_ALLOWED_PATHS.some(path =>
+          currentPath === path || currentPath.startsWith(path + '/')
+        );
+
+        // 排除游戏界面、训练模式、特殊关卡等交互页面
+        const isGameInterface = currentHash.includes('#/training') ||
+                              currentHash.includes('#/s/') ||
+                              currentHash.includes('#/404') ||
+                              currentHash.includes('error');
+
+        // 只在内容页且非游戏界面时加载广告
+        return isContentPage && !isGameInterface;
+      }
+
+      let adsenseLoaded = false;
+
+      function loadAdSense() {
+        if (!shouldLoadAds() || adsenseLoaded) {
+          return;
+        }
+
+        console.log('✅ AdSense: Loading on content page');
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4753725476914524';
+        script.crossOrigin = 'anonymous';
+        document.head.appendChild(script);
+        adsenseLoaded = true;
+      }
+
+      function removeAdSlots() {
+        const existingAds = document.querySelectorAll('.adsbygoogle');
+        existingAds.forEach(ad => {
+          ad.style.display = 'none';
+          console.log('🚫 AdSense: Hidden ad slot on non-content page');
+        });
+      }
+
+      // 初始加载
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          if (shouldLoadAds()) {
+            loadAdSense();
+          }
+        });
+      } else {
+        if (shouldLoadAds()) {
+          loadAdSense();
         }
       }
 
-      // 页面加载完成后检查是否需要加载 AdSense
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadAdSense);
-      } else {
-        loadAdSense();
-      }
-
-      // 监听路由变化，动态管理 AdSense
+      // 监听路由变化，动态管理广告展示
       window.addEventListener('hashchange', function() {
-        const currentHash = window.location.hash;
-        const isErrorPage = currentHash.includes('#/404');
-
-        // 如果切换到 404 页面，移除可能存在的广告
-        if (isErrorPage) {
-          const existingAds = document.querySelectorAll('.adsbygoogle');
-          existingAds.forEach(ad => ad.style.display = 'none');
+        if (shouldLoadAds()) {
+          if (!adsenseLoaded) {
+            loadAdSense();
+          }
+        } else {
+          removeAdSlots();
         }
       });
+
+      // 添加全局函数供组件调用
+      window.ThwordleAds = {
+        shouldShowAds: shouldLoadAds,
+        hideAds: removeAdSlots
+      };
     </script>
   </head>
   <body>

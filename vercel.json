@@ -9,6 +9,30 @@
       "destination": "/#/help"
     },
     {
+      "source": "/how-to-play",
+      "destination": "/#/how-to-play"
+    },
+    {
+      "source": "/faq",
+      "destination": "/#/faq"
+    },
+    {
+      "source": "/archive",
+      "destination": "/#/archive"
+    },
+    {
+      "source": "/about",
+      "destination": "/#/about"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/#/privacy"
+    },
+    {
+      "source": "/terms",
+      "destination": "/#/terms"
+    },
+    {
       "source": "/special/special1",
       "destination": "/#/s/special1"
     },

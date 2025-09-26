@@ -285,13 +285,38 @@
 
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
-<main class="container min-h-screen flex flex-col items-center bg-sakura-light dark:bg-pure-charcoal">
+<main class="min-h-screen bg-sakura-light dark:bg-pure-charcoal">
   <Navbar {modalViewed} modes="daily" />
 
-  <span class="flex gap-4 dark:text-white my-2">
-    <span>Thwordle {dateIndex + 1}</span>
-    <span>ครั้งที่ {attemptsLength}/{attemptLimit}</span>
-  </span>
+  <!-- Hero Section - 发布商内容优先 -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-8 text-center">
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold mb-4 dark:text-white text-gray-800">
+        🎯 <strong>Thwordle</strong> - เวอเดิ้ลภาษาไทย
+      </h1>
+      <p class="text-xl mb-4 dark:text-gray-200 text-gray-700">
+        เกมทายคำไทยที่สนุกที่สุด เล่นฟรีทุกวัน!
+      </p>
+      <p class="text-lg dark:text-gray-300 text-gray-600">
+        <strong>เวอเดิ้ลภาษาไทย</strong> หรือ <strong>เวอเดิล</strong> เป็นเกมทายคำไทยที่สนุกและท้าทาย
+        เหมาะสำหรับผู้ที่ต้องการฝึกทักษะภาษาไทย ทายคำใหม่ได้ทุก 24 ชั่วโมง
+      </p>
+    </div>
+
+    <!-- การ์ดแสดงข้อมูลเกม -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg mb-8 text-center">
+      <div class="flex justify-center items-center gap-4 mb-4">
+        <span class="text-lg font-semibold dark:text-white">📅 Thwordle {dateIndex + 1}</span>
+        <span class="text-lg dark:text-gray-300">📊 ครั้งที่ {attemptsLength}/{attemptLimit}</span>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+        วันนี้ได้ลองทายคำไทยแล้วหรือยัง? เริ่มเล่นเลยด้านล่าง!
+      </p>
+    </div>
+  </section>
+
+  <!-- เกมเซกชัน - ตัวเกมจริง -->
+  <section class="container max-w-lg mx-auto px-4 flex flex-col items-center">
 
   <!-- DEBUG: Solution word -->
   <!-- <input type="text" class="border" bind:value={solution} /> -->
@@ -385,7 +410,7 @@
   </div>
 
   <!-- Share and Special buttons -->
-  <div class="share-button text-center flex flex-col items-center gap-4">
+  <div class="share-button text-center flex flex-col items-center gap-4 mb-8">
     {#if gameEnded}
       <!-- Enhanced Social Share Component -->
       <EnhancedSocial
@@ -417,20 +442,96 @@
       </div>
     {/if}
   </div>
+  </section>
 
-  <!-- Extended Content Section - Second Screen -->
-  <section class="w-full max-w-4xl mx-auto px-4 py-8 mt-16 dark:text-gray-200 text-gray-700">
-    <!-- Hero Description -->
-    <div class="text-center mb-12">
-      <h2 class="text-2xl font-bold mb-4 dark:text-white text-gray-800">
-        🎯 <strong>Thwordle</strong> - เกมทายคำภาษาไทยที่สนุกที่สุด
+  <!-- 发布商内容区域 - AdSense 政策合规 -->
+  <section class="w-full max-w-4xl mx-auto px-4 py-8 mt-8 dark:text-gray-200 text-gray-700">
+
+    <!-- 词库与难度说明 - 重要的发布商内容 -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        📚 คลังคำศัพท์และมาตร��านการคัดเลือก
       </h2>
-      <p class="text-lg mb-4">
-        <strong>เวอเดิ้ลภาษาไทย</strong> หรือ <strong>เวอเดิล</strong> เป็นเกมทายคำไทยที่สนุกและท้าทาย เหมาะสำหรับผู้ที่ต้องการฝึกทักษะภาษาไทย
-      </p>
-      <p class="text-base">
-        เล่น <strong>ไทยเวอเดิ้ล</strong> ฟรีทุกวัน ทายคำใหม่ได้ทุก 24 ชั่วโมง พร้อมแชร์ผลการเล่นให้เพื่อนๆ ได้เห็น <strong>เวอเดิลไทย</strong> ที่ทุกคนชอบ
-      </p>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg mb-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-sakura-pink dark:text-sakura-light">🎯 แหล่งข้อมูลคำศัพท์</h3>
+            <ul class="space-y-2 text-sm">
+              <li>• <strong>พจนานุกรมฉบับราชบัณฑิตยสถาน</strong> - แหล่งข้อมูลหลัก</li>
+              <li>• <strong>คำศัพท์ภาษาไทยสมัยใหม่</strong> - คำที่ใช้ในชีวิตประจำวัน</li>
+              <li>• <strong>คำราชาศัพท์</strong> - คำสำคัญในภาษาไทย</li>
+              <li>• <strong>คำผสมที่ยอมรับ</strong> - คำที่ประกอบจากรากศัพท์หลายส่วน</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-warm-orange dark:text-warm-light">⚖️ เกณฑ์การคัดกรอง</h3>
+            <ul class="space-y-2 text-sm">
+              <li>• <strong>ความยาว:</strong> 3-7 ตัวอักษร (รวมสระและวรรณยุกต์)</li>
+              <li>• <strong>ความถูกต้อง:</strong> ตรวจสอบการสะกดตามหลักภาษาไทย</li>
+              <li>• <strong>ความเหมาะสม:</strong> หลีกเลี่ยงคำหยาบคาย หรือไม่เหมาะสม</li>
+              <li>• <strong>ความนิยม:</strong> เน้นคำที่ใช้บ่อยในการส��่อสาร</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+          <p class="text-sm text-blue-700 dark:text-blue-300">
+            <strong>📊 สถิติคลังคำ:</strong> ปัจจุบันมีคำศัพท์ในระบบมากกว่า <strong>15,000 คำ</strong>
+            ซึ่งอัปเดตและปรับปรุงสม่ำเสมอเพื่อให้เกมมีความน่าสนใจและท้าทายอย่างต่อเนื่อง
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- การแสดงตัวอย่างการเล่น -->
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center dark:text-white text-gray-800">
+        🎮 ตัวอย่างการเล่น Thwordle
+      </h2>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+        <p class="text-center mb-6 text-gray-600 dark:text-gray-400">
+          ลองดูตัวอย่างการทายคำ <strong>"กบ"</strong> (2 ตัวอักษร)
+        </p>
+
+        <div class="space-y-4 max-w-md mx-auto">
+          <!-- ตัวอย่างการทาย 1 -->
+          <div class="flex justify-center gap-2">
+            <div class="w-12 h-12 bg-gray-400 border-2 border-gray-400 rounded flex items-center justify-center text-white font-bold text-lg">ก</div>
+            <div class="w-12 h-12 bg-gray-400 border-2 border-gray-400 rounded flex items-center justify-center text-white font-bold text-lg">ร</div>
+            <span class="flex items-center ml-4 text-sm text-gray-600 dark:text-gray-400">❌ "กร" - ไม่ใช่คำใน Thwordle</span>
+          </div>
+
+          <!-- ตัวอย่างการทาย 2 -->
+          <div class="flex justify-center gap-2">
+            <div class="w-12 h-12 bg-sakura-pink border-2 border-sakura-pink rounded flex items-center justify-center text-white font-bold text-lg">ก</div>
+            <div class="w-12 h-12 bg-gray-400 border-2 border-gray-400 rounded flex items-center justify-center text-white font-bold text-lg">า</div>
+            <span class="flex items-center ml-4 text-sm text-gray-600 dark:text-gray-400">⚠️ "กา" - มี "ก" ในตำแหน่งที่ถูก</span>
+          </div>
+
+          <!-- ตัวอย่างการทาย 3 -->
+          <div class="flex justify-center gap-2">
+            <div class="w-12 h-12 bg-sakura-pink border-2 border-sakura-pink rounded flex items-center justify-center text-white font-bold text-lg">ก</div>
+            <div class="w-12 h-12 bg-sakura-pink border-2 border-sakura-pink rounded flex items-center justify-center text-white font-bold text-lg">บ</div>
+            <span class="flex items-center ml-4 text-sm text-green-600 dark:text-green-400">✅ "กบ" - ถูกต้อง!</span>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center">
+          <div class="inline-flex items-center gap-4 text-sm">
+            <span class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-sakura-pink rounded"></div>
+              <span>ถูกตำแหน่ง</span>
+            </span>
+            <span class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-warm-orange rounded"></div>
+              <span>มีตัวอักษรแต่ผิดตำแหน่ง</span>
+            </span>
+            <span class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-gray-400 rounded"></div>
+              <span>ไม่มีตัวอักษรนี้</span>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- How to Play Section -->

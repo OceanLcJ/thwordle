@@ -35,6 +35,42 @@ export const urlMappings: UrlMapping[] = [
     description: 'คู่มือการเล่น Thwordle วิธีเล่น เทคนิค และ FAQ เกมทายคำภาษาไทย thwordle help ไทยเวอเดิ้ล เวอเดิลไทย'
   },
   {
+    seoPath: '/how-to-play',
+    hashRoute: '#/how-to-play',
+    title: 'How to Play Thwordle - วิธีเล่นเวอเดิ้ลภาษาไทย',
+    description: 'เรียนรู้วิธีเล่น Thwordle ตั้งแต่เริ่มต้น กติกา เทคนิค และเคล็ดลับการทายคำภาษาไทยให้แม่นยำ'
+  },
+  {
+    seoPath: '/faq',
+    hashRoute: '#/faq',
+    title: 'FAQ - คำถามที่พบบ่อยเกี่ยวกับ Thwordle',
+    description: 'คำตอบสำหรับคำถามที่พบบ่อยเกี่ยวกับ Thwordle เวอเดิ้ลภาษาไทย การเล่น การแชร์ และฟีเจอร์ต่าง ๆ'
+  },
+  {
+    seoPath: '/archive',
+    hashRoute: '#/archive',
+    title: 'Thwordle Archive - คลังคำตอบประจำวัน',
+    description: 'รวมคำตอบประจำวันของ Thwordle พร้อมคำอธิบายและเทคนิคการแก้ปัญหา เรียนรู้จากคำตอบที่ผ่านมา'
+  },
+  {
+    seoPath: '/about',
+    hashRoute: '#/about',
+    title: 'เกี่ยวกับ Thwordle - เวอเดิ้ลภาษาไทย',
+    description: 'ประวัติและที่มาของ Thwordle เกมทายคำภาษาไทย ทีมพัฒนา และวิสัยทัศน์ในการส่งเสริมภาษาไทย'
+  },
+  {
+    seoPath: '/privacy',
+    hashRoute: '#/privacy',
+    title: 'นโยบายความเป็นส่วนตัว - Thwordle',
+    description: 'นโยบายความเป็นส่วนตัวของ Thwordle การเก็บรวบรวมข้อมูล การใช้งาน และการคุ้มครองข้อมูลส่วนบุคคล'
+  },
+  {
+    seoPath: '/terms',
+    hashRoute: '#/terms',
+    title: 'เงื่อนไขการใช้งาน - Thwordle',
+    description: 'เงื่อนไขการใช้งานเว็บไซต์ Thwordle กฎระเบียบ ข้อจำกัด และข้อกำหนดในการเล่นเกม'
+  },
+  {
     seoPath: '/404',
     hashRoute: '#/404',
     title: '404 - ไม่พบหน้าที่ต้องการ | Thwordle',
