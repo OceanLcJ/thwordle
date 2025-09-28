@@ -99,6 +99,12 @@
           </button>
         {/if}
         <button on:click={() => window.location.hash = '#/help'}>Help</button>
+        <button
+          class="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
+          on:click={() => window.location.hash = '#/blog'}
+        >
+          Blog
+        </button>
         <button on:click={() => (statsModal = true)}>สถิติ</button>
         <button on:click={() => (settingModal = true)}>ตั้งค่า</button>
       </span>
@@ -150,6 +156,13 @@
                   show = false
                   window.location.hash = '#/help'
                 }}>Help</button
+              >
+              <button
+                class="block px-4 py-2 hover:bg-sakura-light hover:text-purple-600 dark:text-white dark:hover:bg-elegant-dark w-full"
+                on:click={() => {
+                  show = false
+                  window.location.hash = '#/blog'
+                }}>Blog</button
               >
               <button
                 class="block px-4 py-2 hover:bg-sakura-light hover:text-sakura-dark dark:text-white dark:hover:bg-elegant-dark w-full"

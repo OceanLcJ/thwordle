@@ -12,6 +12,7 @@
   import HowToPlay from "./HowToPlay.svelte"
   import FAQ from "./FAQ.svelte"
   import Archive from "./Archive.svelte"
+  import Blog from "./Blog.svelte"
   import About from "./About.svelte"
   import Privacy from "./Privacy.svelte"
   import Terms from "./Terms.svelte"
@@ -29,6 +30,8 @@
   <FAQ />
 {:else if $url.hash.indexOf("#/archive") === 0}
   <Archive />
+{:else if $url.hash.indexOf("#/blog") === 0}
+  <Blog />
 {:else if $url.hash.indexOf("#/about") === 0}
   <About />
 {:else if $url.hash.indexOf("#/privacy") === 0}

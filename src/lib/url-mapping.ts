@@ -53,6 +53,12 @@ export const urlMappings: UrlMapping[] = [
     description: 'รวมคำตอบประจำวันของ Thwordle พร้อมคำอธิบายและเทคนิคการแก้ปัญหา เรียนรู้จากคำตอบที่ผ่านมา'
   },
   {
+    seoPath: '/blog',
+    hashRoute: '#/blog',
+    title: 'บล็อก Thwordle - อัพเดทและบทความ',
+    description: 'อ่านบทความล่าสุด อัพเดทฟีเจอร์ใหม่ เทคนิคการเล่น และเรื่องราวน่าสนใจจาก Thwordle เวอเดิ้ลภาษาไทย'
+  },
+  {
     seoPath: '/about',
     hashRoute: '#/about',
     title: 'เกี่ยวกับ Thwordle - เวอเดิ้ลภาษาไทย',
