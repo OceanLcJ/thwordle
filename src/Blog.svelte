@@ -152,21 +152,24 @@
     {
       id: 3,
       title: "🏆 สถิติที่น่าทึ่งและ Fun Facts ของผู้เล่น Thwordle",
-      date: "27 กันยายน 2025",
+      date: "29 กันยายน 2025",
       category: "สถิติและข้อมูล",
-      published: false,  // ยังไม่เผยแพร่
+      published: true,  // เผยแพร่แล้ว
       excerpt: "ข้อมูลสถิติที่น่าสนใจจากผู้เล่นนับแสน คำที่ยากที่สุด คำที่ง่ายที่สุด และพฤติกรรมการเล่นที่น่าประหลาดใจ",
+      keywords: "Thwordle สถิติ, เวอเดิ้ลภาษาไทย, คำยาก Thwordle, คำง่าย Thwordle, เทคนิค Wordle, สถิติผู้เล่น, Wordle ไทย, เกมทายคำ",
+      author: "ทีม Thwordle",
+      readTime: "8 นาที",
       content: `
-        <p>หลังจากวิเคราะห์ข้อมูลการเล่นกว่า 50 ล้านเกม เราพบสถิติที่น่าทึ่งและน่าสนใจมากมาย มาดูกันว่าคนไทยเล่น Thwordle อย่างไร!</p>
+        <p>หลังจากวิเคราะห์ข้อมูลการเล่น <strong>Thwordle เวอเดิ้ลภาษาไทย</strong> กว่า 50 ล้านเกม เราพบสถิติที่น่าทึ่งและน่าสนใจมากมาย มาดูกันว่าคนไทยเล่น <strong>Thwordle</strong> อย่างไร! ข้อมูลเหล่านี้จะช่วยให้คุณเข้าใจพฤติกรรมการเล่น <strong>เกมทายคำภาษาไทย</strong> และพัฒนาเทคนิคการเล่นของคุณได้ดีขึ้น</p>
 
-        <h3>📊 สถิติการเล่นโดยรวม</h3>
+        <h3>📊 สถิติการเล่น Thwordle โดยรวม</h3>
         <div style="background: #f0f0f0; padding: 20px; border-radius: 10px; margin: 20px 0;">
           <ul>
-            <li><strong>เกมที่เล่นทั้งหมด:</strong> 50,234,567 เกม</li>
-            <li><strong>อัตราการชนะ:</strong> 87.3%</li>
-            <li><strong>จำนวนครั้งเฉลี่ย:</strong> 4.2 จาก 6 ครั้ง</li>
-            <li><strong>เวลาเฉลี่ยต่อเกม:</strong> 3 นาที 42 วินาที</li>
-            <li><strong>Win Streak สูงสุด:</strong> 487 วันติดต่อกัน!</li>
+            <li><strong>เกม Thwordle ที่เล่นทั้งหมด:</strong> 50,234,567 เกม</li>
+            <li><strong>อัตราการชนะใน Thwordle:</strong> 87.3%</li>
+            <li><strong>จำนวนครั้งเฉลี่ยในการทายคำ:</strong> 4.2 จาก 6 ครั้ง</li>
+            <li><strong>เวลาเฉลี่ยต่อเกม Wordle ภาษาไทย:</strong> 3 นาที 42 วินาที</li>
+            <li><strong>Win Streak สูงสุดใน Thwordle:</strong> 487 วันติดต่อกัน!</li>
           </ul>
         </div>
 
@@ -255,7 +258,7 @@
           <li><strong>ผู้เล่นอายุน้อยที่สุด:</strong> 7 ปี</li>
         </ul>
 
-        <p><strong>ข้อมูลเหล่านี้แสดงให้เห็นว่า Thwordle</strong> ไม่ใช่แค่เกม แต่เป็นส่วนหนึ่งของชีวิตประจำวันของคนไทยหลายแสนคน สร้างความสนุกและความท้าทายใหม่ๆ ทุกวัน!</p>
+        <p><strong>ข้อมูลสถิติ Thwordle เหล่านี้แสดงให้เห็นว่า เวอเดิ้ลภาษาไทย</strong> ไม่ใช่แค่เกมทายคำธรรมดา แต่เป็นส่วนหนึ่งของชีวิตประจำวันของคนไทยหลายแสนคน สร้างความสนุกและความท้าทายใหม่ๆ ในการเล่น <strong>Thwordle</strong> ทุกวัน! ไม่ว่าจะเป็นการแข่งขันกับเพื่อน การฝึกฝนคำศัพท์ภาษาไทย หรือการผ่อนคลายหลังจากทำงาน <strong>Wordle ภาษาไทย</strong> ก็ตอบโจทย์ทุกความต้องการ ลองใช้สถิติและเทคนิคเหล่านี้ปรับปรุงการเล่น <strong>Thwordle</strong> ของคุณดูสิ!</p>
       `
     },
     {
@@ -816,6 +819,78 @@ if (navigator.doNotTrack === '1') {
     selectedPost = post
     showFullPost = true
 
+    // 更新页面 title 和 meta 标签
+    document.title = `${post.title} - Thwordle บล็อก`
+
+    // 添加文章专属 meta 标签
+    const metaTags = [
+      { property: 'og:title', content: post.title },
+      { property: 'og:description', content: post.excerpt },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:url', content: `${url}/${post.id}` },
+      { property: 'article:published_time', content: new Date(post.date).toISOString() },
+      { property: 'article:author', content: post.author || 'ทีม Thwordle' },
+      { property: 'article:section', content: post.category },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: post.title },
+      { name: 'twitter:description', content: post.excerpt },
+      { name: 'keywords', content: post.keywords || 'Thwordle, เวอเดิ้ลภาษาไทย, เกมทายคำ' },
+      { name: 'description', content: post.excerpt }
+    ]
+
+    // 添加 meta 标签到 head
+    metaTags.forEach(tag => {
+      const meta = document.createElement('meta')
+      if (tag.property) {
+        meta.setAttribute('property', tag.property)
+      } else {
+        meta.name = tag.name
+      }
+      meta.content = tag.content
+      meta.className = 'blog-post-meta'
+      document.head.appendChild(meta)
+    })
+
+    // 添加结构化数据 (Schema.org)
+    const ldJson = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      datePublished: new Date(post.date).toISOString(),
+      dateModified: new Date(post.date).toISOString(),
+      author: {
+        '@type': 'Organization',
+        name: post.author || 'ทีม Thwordle',
+        url: 'https://thwordle.app'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Thwordle',
+        url: 'https://thwordle.app',
+        logo: {
+          '@type': 'ImageObject',
+          url: imageUrl
+        }
+      },
+      description: post.excerpt,
+      articleBody: post.content.replace(/<[^>]*>/g, ''), // 去除 HTML 标签
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${url}/${post.id}`
+      },
+      keywords: post.keywords || 'Thwordle, เวอเดิ้ลภาษาไทย, เกมทายคำ',
+      articleSection: post.category,
+      wordCount: post.content.split(' ').length,
+      timeRequired: `PT${post.readTime || '5 นาที'}`,
+      inLanguage: 'th-TH'
+    }
+
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.id = 'blog-post-structured-data'
+    script.textContent = JSON.stringify(ldJson)
+    document.head.appendChild(script)
+
     // 如果是未发布的文章，添加 noindex meta 标签
     if (post.published === false) {
       const metaRobots = document.createElement('meta')
@@ -829,6 +904,19 @@ if (navigator.doNotTrack === '1') {
   function closePost() {
     showFullPost = false
     selectedPost = null
+
+    // 恢复原始页面标题
+    document.title = title
+
+    // 移除所有动态添加的 meta 标签
+    const postMetas = document.querySelectorAll('.blog-post-meta')
+    postMetas.forEach(meta => meta.remove())
+
+    // 移除结构化数据
+    const structuredData = document.getElementById('blog-post-structured-data')
+    if (structuredData) {
+      structuredData.remove()
+    }
 
     // 移除 noindex meta 标签（如果存在）
     const metaRobots = document.getElementById('blog-noindex-meta')
