@@ -12,7 +12,13 @@ A Thai word-guessing game inspired by Wordle, featuring daily challenges, specia
 - 🏋️ **Training Mode**: Practice with unlimited games
 - 🌙 **Dark Mode**: Switch between light and dark themes
 - 📊 **Statistics**: Track your progress and win streaks
-- 🔗 **Share Results**: Share your achievements with friends
+- 🔗 **Enhanced Social Sharing**: Share your achievements with draggable floating social buttons
+- 📝 **Blog System**: Professional blog with draft control and SEO optimization
+- 📖 **Comprehensive Help**: FAQ, How to Play guides, and About page
+- ⚖️ **Legal Pages**: Terms of Service and Privacy Policy
+- 🎯 **Custom 404 Page**: Thai-localized error page with navigation
+- 📈 **Analytics Integration**: Google Analytics for insights
+- 💰 **AdSense Support**: Full AdSense policy compliance
 
 ## Game Modes
 
@@ -49,11 +55,20 @@ A Thai word-guessing game inspired by Wordle, featuring daily challenges, specia
 
 ## Recent Updates
 
-### v2024.01 - Mobile Navigation Fix
+### v2025.09 - Comprehensive Feature Enhancement
+- **Added**: Professional blog system with draft control and publishing workflow
+- **Enhanced**: SEO optimization with Thai keyword targeting and GSC data insights
+- **Added**: Enhanced social sharing with draggable floating buttons
+- **Added**: Custom 404 error page with Thai localization
+- **Added**: Terms of Service and Privacy Policy pages
+- **Added**: Comprehensive Help page, FAQ, and How to Play guides
+- **Improved**: AdSense policy compliance with proper script loading
+- **Fixed**: DOCTYPE declaration and AdSense integration
+- **Optimized**: Google Analytics implementation
 - **Fixed**: Mobile Special challenge navigation freeze issue
-- **Enhanced**: Improved mobile hamburger menu event handling
-- **Improved**: Special challenge system robustness with better error handling
-- **Added**: Legacy Special ID compatibility for backward compatibility
+- **Enhanced**: Special challenge system robustness with better error handling
+- **Improved**: Vercel fallback routing configuration
+- **Enhanced**: Core components and build configuration
 
 ## Contributing
 
